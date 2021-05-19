@@ -10,8 +10,16 @@ package com.jasonpercus.util.process.java;
 
 
 
+import static com.jasonpercus.util.OS.IS_ANDROID;
+import static com.jasonpercus.util.OS.IS_LINUX;
+import static com.jasonpercus.util.OS.IS_WINDOWS;
+import com.jasonpercus.util.OSNotSupportedException;
+import com.jasonpercus.util.Strings;
+
+
+
 /**
- * Cette classe à pour but de permettre une communication bi-directionnelle entre un processus père java et un processus fils java (*.jar)
+ * Cette classe à pour but de permettre une communication bi-directionnelle entre un processus père java et un processus fils java (*.jar). Attention InterPipe ne fonctionne actuellement que sur Windows et Linux (excepté Android)
  * <p>
  * <b>
  * POUR LE PERE:
@@ -46,6 +54,7 @@ package com.jasonpercus.util.process.java;
  * @author JasonPercus
  * @version 1.0
  */
+@SuppressWarnings("StaticNonFinalUsedInInitialization")
 public final class InterPipe {
 
     
@@ -129,179 +138,178 @@ public final class InterPipe {
      */
     static{
         java.io.PrintStream[] ps = new java.io.PrintStream[]{System.out, System.err};
-        for(int i=0;i<ps.length;i++){
-            ps[i] = new java.io.PrintStream(ps[i]){
+        for (int i = 0; i < ps.length; i++) {
+            ps[i] = new java.io.PrintStream(ps[i]) {
                 @Override
                 public void println(Object obj) {
-                    if(parent){
+                    if (parent) {
                         super.println(obj);
-                    }else{
+                    } else {
                         print(obj);
                     }
                 }
 
                 @Override
                 public void println(String s) {
-                    if(parent){
+                    if (parent) {
                         super.println(s);
-                    }else{
+                    } else {
                         print(s);
                     }
                 }
 
                 @Override
                 public void println(char[] c) {
-                    if(parent){
+                    if (parent) {
                         super.println(c);
-                    }else{
+                    } else {
                         print(c);
                     }
                 }
 
                 @Override
                 public void println(double d) {
-                    if(parent){
+                    if (parent) {
                         super.println(d);
-                    }else{
+                    } else {
                         print(d);
                     }
                 }
 
                 @Override
                 public void println(float f) {
-                    if(parent){
+                    if (parent) {
                         super.println(f);
-                    }else{
+                    } else {
                         print(f);
                     }
                 }
 
                 @Override
                 public void println(long l) {
-                    if(parent){
+                    if (parent) {
                         super.println(l);
-                    }else{
+                    } else {
                         print(l);
                     }
                 }
 
                 @Override
                 public void println(int i) {
-                    if(parent){
+                    if (parent) {
                         super.println(i);
-                    }else{
+                    } else {
                         print(i);
                     }
                 }
 
                 @Override
                 public void println(char c) {
-                    if(parent){
+                    if (parent) {
                         super.println(c);
-                    }else{
+                    } else {
                         print(c);
                     }
                 }
 
                 @Override
                 public void println(boolean b) {
-                    if(parent){
+                    if (parent) {
                         super.println(b);
-                    }else{
+                    } else {
                         print(b);
                     }
                 }
 
                 @Override
                 public void println() {
-                    if(parent){
+                    if (parent) {
                         super.println();
-                    }else{
+                    } else {
                         print("");
                     }
                 }
 
                 @Override
                 public void print(Object obj) {
-                    if(parent){
+                    if (parent) {
                         super.print(obj);
-                    }else{
-                        if(obj instanceof Packet)
-                            super.print(obj+"\n");
-                        else
-                            super.print(new Packet((java.io.Serializable) obj)+"\n");
+                    } else if (obj instanceof Packet) {
+                        super.print(obj + "\n");
+                    } else {
+                        super.print(new Packet((java.io.Serializable) obj) + "\n");
                     }
                 }
 
                 @Override
                 public void print(String s) {
-                    if(parent){
+                    if (parent) {
                         super.print(s);
-                    }else{
-                        super.print(new Packet(s)+"\n");
+                    } else {
+                        super.print(new Packet(s) + "\n");
                     }
                 }
 
                 @Override
                 public void print(char[] c) {
-                    if(parent){
+                    if (parent) {
                         super.print(c);
-                    }else{
-                        super.print(new Packet(c)+"\n");
+                    } else {
+                        super.print(new Packet(c) + "\n");
                     }
                 }
 
                 @Override
                 public void print(double d) {
-                    if(parent){
+                    if (parent) {
                         super.print(d);
-                    }else{
-                        super.print(new Packet(d)+"\n");
+                    } else {
+                        super.print(new Packet(d) + "\n");
                     }
                 }
 
                 @Override
                 public void print(float f) {
-                    if(parent){
+                    if (parent) {
                         super.print(f);
-                    }else{
-                        super.print(new Packet(f)+"\n");
+                    } else {
+                        super.print(new Packet(f) + "\n");
                     }
                 }
 
                 @Override
                 public void print(long l) {
-                    if(parent){
+                    if (parent) {
                         super.print(l);
-                    }else{
-                        super.print(new Packet(l)+"\n");
+                    } else {
+                        super.print(new Packet(l) + "\n");
                     }
                 }
 
                 @Override
                 public void print(int i) {
-                    if(parent){
+                    if (parent) {
                         super.print(i);
-                    }else{
-                        super.print(new Packet(i)+"\n");
+                    } else {
+                        super.print(new Packet(i) + "\n");
                     }
                 }
 
                 @Override
                 public void print(char c) {
-                    if(parent){
+                    if (parent) {
                         super.print(c);
-                    }else{
-                        super.print(new Packet(c)+"\n");
+                    } else {
+                        super.print(new Packet(c) + "\n");
                     }
                 }
 
                 @Override
                 public void print(boolean b) {
-                    if(parent){
+                    if (parent) {
                         super.print(b);
-                    }else{
-                        super.print(new Packet(b)+"\n");
+                    } else {
+                        super.print(new Packet(b) + "\n");
                     }
                 }
             };
@@ -329,15 +337,19 @@ public final class InterPipe {
      */
     @SuppressWarnings("SynchronizeOnNonFinalField")
     public static void createProcessJava(String id, String jarFile){
-        if(id == null)
-            throw new NullPointerException("id is null !");
-        else{
-            synchronized(packetsProcess){
-                if(!packetsProcess.contains(new PacketProcess(id))){
-                    packetsProcess.add(new PacketProcess(id, jarFile));
-                    parent = true;
+        if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+            if(id == null)
+                throw new NullPointerException("id is null !");
+            else{
+                synchronized(packetsProcess){
+                    if(!packetsProcess.contains(new PacketProcess(id))){
+                        packetsProcess.add(new PacketProcess(id, jarFile));
+                        parent = true;
+                    }
                 }
             }
+        }else{
+            throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
         }
     }
     
@@ -345,13 +357,17 @@ public final class InterPipe {
      * Stoppe le processus d'écoute (à utiliser à partir d'un processus fils)
      */
     public static void stop(){
-        if(!parent){
-            run = false;
-            stopped = true;
-            out.print("ergiuberiguberiuz");
-            err.print("ergiuberiguberiuz");
-        }else
-            throw WrongTypeException.isParentTypeStop();
+        if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+            if(!parent){
+                run = false;
+                stopped = true;
+                out.print("ergiuberiguberiuz");
+                err.print("ergiuberiguberiuz");
+            }else
+                throw WrongTypeException.isParentTypeStop();
+        }else{
+            throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+        }
     }
     
     /**
@@ -359,10 +375,14 @@ public final class InterPipe {
      * @param id Correspond à l'id du processus fils dont on va couper la communication
      */
     public static void stop(String id){
-        if(parent)
-            out.print(id, "erougneruogbnueor");
-        else
-            throw WrongTypeException.isChildTypeStop();
+        if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+            if(parent)
+                out.print(id, "erougneruogbnueor");
+            else
+                throw WrongTypeException.isChildTypeStop();
+        }else{
+            throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+        }
     }
     
     /**
@@ -371,17 +391,21 @@ public final class InterPipe {
      */
     @SuppressWarnings("SynchronizeOnNonFinalField")
     public static String[] listIdChildren(){
-        if(parent){
-            synchronized(packetsProcess){
-                int size = packetsProcess.size();
-                String[] names = new String[size];
-                for(int i=0;i<size;i++){
-                    names[i] = packetsProcess.get(i).name;
+        if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+            if(parent){
+                synchronized(packetsProcess){
+                    int size = packetsProcess.size();
+                    String[] names = new String[size];
+                    for(int i=0;i<size;i++){
+                        names[i] = packetsProcess.get(i).name;
+                    }
+                    return names;
                 }
-                return names;
-            }
-        }else
-            throw WrongTypeException.isChildType();
+            }else
+                throw WrongTypeException.isChildType();
+        }else{
+            throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+        }
     }
     
     /**
@@ -392,42 +416,46 @@ public final class InterPipe {
      */
     @SuppressWarnings({"SynchronizeOnNonFinalField", "SleepWhileInLoop"})
     public static java.io.Serializable getSync(java.io.Serializable obj, boolean error){
-        if(!parent){
-            final String idReturn = generateChain(20);
-            final java.io.Serializable[] returnObj = new java.io.Serializable[1];
-            final boolean[] finished = new boolean[]{false};
-            Sync sync = new Sync(error) {
-                @Override
-                public void packet(Packet packet) {
-                    if(packet.getIdReturn() != null && packet.getIdReturn().equals(idReturn) && packet.getDirection() == -1){
-                        returnObj[0] = (java.io.Serializable) packet.getObject();
-                        finished[0] = true;
+        if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+            if(!parent){
+                final String idReturn = Strings.generate(20);
+                final java.io.Serializable[] returnObj = new java.io.Serializable[1];
+                final boolean[] finished = new boolean[]{false};
+                Sync sync = new Sync(error) {
+                    @Override
+                    public void packet(Packet packet) {
+                        if(packet.getIdReturn() != null && packet.getIdReturn().equals(idReturn) && packet.getDirection() == -1){
+                            returnObj[0] = (java.io.Serializable) packet.getObject();
+                            finished[0] = true;
+                        }
+                    }
+                };
+                synchronized(syncsForChildren){
+                    syncsForChildren.add(sync);
+                }
+                if(error){
+                    System.err.println(new Packet(obj, 1, idReturn));
+                }else{
+                    System.out.println(new Packet(obj, 1, idReturn));
+                }
+                while (!finished[0]) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        java.util.logging.Logger.getLogger(InterPipe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     }
                 }
-            };
-            synchronized(syncsForChildren){
-                syncsForChildren.add(sync);
-            }
-            if(error){
-                System.err.println(new Packet(obj, 1, idReturn));
-            }else{
-                System.out.println(new Packet(obj, 1, idReturn));
-            }
-            while (!finished[0]) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException ex) {
-                    java.util.logging.Logger.getLogger(InterPipe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                synchronized (syncsForChildren) {
+                    syncsForChildren.remove(sync);
                 }
+                if(returnObj[0].toString().equals("erognzbgihnenfbn"))
+                    return null;
+                return returnObj[0];
+            }else{
+                return WrongTypeException.isChildTypeSync();
             }
-            synchronized (syncsForChildren) {
-                syncsForChildren.remove(sync);
-            }
-            if(returnObj[0].toString().equals("erognzbgihnenfbn"))
-                return null;
-            return returnObj[0];
         }else{
-            return WrongTypeException.isChildTypeSync();
+            throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
         }
     }
     
@@ -439,71 +467,60 @@ public final class InterPipe {
      */
     @SuppressWarnings({"SynchronizeOnNonFinalField", "SleepWhileInLoop"})
     public static java.io.Serializable getSync(String id, java.io.Serializable obj){
-        if(parent){
-            if(id == null)
-                throw new NullPointerException("id is null !");
-            final String idReturn = generateChain(20);
-            final java.io.Serializable[] returnObj = new java.io.Serializable[1];
-            final boolean[] finished = new boolean[]{false};
-            Sync sync = new Sync() {
-                @Override
-                public void packet(Packet packet) {
-                    if(packet.getIdReturn() != null && packet.getIdReturn().equals(idReturn) && packet.getDirection() == -1){
-                        returnObj[0] = (java.io.Serializable) packet.getObject();
-                        finished[0] = true;
+        if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+            if(parent){
+                if(id == null)
+                    throw new NullPointerException("id is null !");
+                final String idReturn = Strings.generate(20);
+                final java.io.Serializable[] returnObj = new java.io.Serializable[1];
+                final boolean[] finished = new boolean[]{false};
+                Sync sync = new Sync() {
+                    @Override
+                    public void packet(Packet packet) {
+                        if(packet.getIdReturn() != null && packet.getIdReturn().equals(idReturn) && packet.getDirection() == -1){
+                            returnObj[0] = (java.io.Serializable) packet.getObject();
+                            finished[0] = true;
+                        }
                     }
+                };
+                synchronized(syncsForParent){
+                    syncsForParent.add(sync);
                 }
-            };
-            synchronized(syncsForParent){
-                syncsForParent.add(sync);
-            }
-            PacketProcess packetProcess = getPacketProcess(id);
-            if(packetProcess != null){
-                try {
-                    packetProcess.bw.write(new Packet(obj, 1, idReturn).toString()+"\n");
-                    packetProcess.bw.flush();
-                } catch (java.io.IOException ex) {
-                    java.util.logging.Logger.getLogger(InterPipe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-                }
-                while (!finished[0]) {
+                PacketProcess packetProcess = getPacketProcess(id);
+                if(packetProcess != null){
                     try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
+                        packetProcess.bw.write(new Packet(obj, 1, idReturn).toString()+"\n");
+                        packetProcess.bw.flush();
+                    } catch (java.io.IOException ex) {
                         java.util.logging.Logger.getLogger(InterPipe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     }
-                }
-                synchronized (syncsForParent) {
-                    syncsForParent.remove(sync);
-                }
-                if(returnObj[0].toString().equals("erognzbgihnenfbn"))
+                    while (!finished[0]) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException ex) {
+                            java.util.logging.Logger.getLogger(InterPipe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                        }
+                    }
+                    synchronized (syncsForParent) {
+                        syncsForParent.remove(sync);
+                    }
+                    if(returnObj[0].toString().equals("erognzbgihnenfbn"))
+                        return null;
+                    return returnObj[0];
+                }else{
                     return null;
-                return returnObj[0];
+                }
             }else{
-                return null;
+                return WrongTypeException.isParentTypeSync();
             }
         }else{
-            return WrongTypeException.isParentTypeSync();
+            throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
         }
     }
     
     
     
 //METHODES PRIVATES STATICS
-    /**
-     * Cette méthode génère une chaine aléatoire de length caractère
-     * @param length Correspond à la taille de la chaine voulue
-     * @return Retourne la chaine de caractère
-     */
-    private static String generateChain(int length) {
-        String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"; // Tu supprimes les lettres dont tu ne veux pas
-        String pass = "";
-        for (int x = 0; x < length; x++) {
-            int i = (int) Math.floor(Math.random() * chars.length());
-            pass += chars.charAt(i);
-        }
-        return pass;
-    }
-    
     /**
      * Renvoie le PacketProcess correspondant à son id
      * @param id Correspond à l'id du PacketProcess à trouver
@@ -548,10 +565,14 @@ public final class InterPipe {
          * @param obj Correspond à l'objet à envoyer
          */
         public void print(java.io.Serializable obj){
-            if(!parent)
-                System.out.println(new Packet(obj));
-            else
-                throw WrongTypeException.isParentTypeOut();
+            if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+                if(!parent)
+                    System.out.println(new Packet(obj));
+                else
+                    throw WrongTypeException.isParentTypeOut();
+            }else{
+                throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+            }
         }
         
         
@@ -563,22 +584,26 @@ public final class InterPipe {
          */
         @SuppressWarnings("SynchronizeOnNonFinalField")
         public void print(String processId, java.io.Serializable obj){
-            if(parent){
-                synchronized(packetsProcess){
-                    int indexof = packetsProcess.indexOf(new PacketProcess(processId));
-                    if(indexof>-1){
-                        PacketProcess packetProcess = packetsProcess.get(indexof);
-                        try {
-                            Packet packet = new Packet(obj);
-                            packetProcess.bw.write(packet.toString()+"\n");
-                            packetProcess.bw.flush();
-                        } catch (java.io.IOException ex) {
-                            java.util.logging.Logger.getLogger(InterPipe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+                if(parent){
+                    synchronized(packetsProcess){
+                        int indexof = packetsProcess.indexOf(new PacketProcess(processId));
+                        if(indexof>-1){
+                            PacketProcess packetProcess = packetsProcess.get(indexof);
+                            try {
+                                Packet packet = new Packet(obj);
+                                packetProcess.bw.write(packet.toString()+"\n");
+                                packetProcess.bw.flush();
+                            } catch (java.io.IOException ex) {
+                                java.util.logging.Logger.getLogger(InterPipe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                            }
                         }
                     }
-                }
-            } else
-                throw WrongTypeException.isChildTypeOut();
+                } else
+                    throw WrongTypeException.isChildTypeOut();
+            }else{
+                throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+            }
         }
         
         
@@ -610,58 +635,62 @@ public final class InterPipe {
          * @param received Permet de rediriger les objets du processus père
          */
         public void read(IReceivedForChildren received){
-            if(!parent){
-                if(!stopped)
-                    run = true;
-                @SuppressWarnings("SynchronizeOnNonFinalField")
-                Thread thread = new Thread(() -> {
-                    java.util.Scanner scanner = new java.util.Scanner(System.in);
-                    try {
-                        while (run) {
-                            String line = scanner.nextLine();
-                            if (line != null) {
-                                Packet packet = Packet.open(line.replace("\n", ""));
-                                Object obj = packet.getObject();
-                                switch (packet.getDirection()) {
-                                    case -1:
-                                        Thread t1 = new Thread(() -> {
-                                            synchronized(syncsForChildren){
-                                                for(Sync sync : syncsForChildren){
-                                                    sync.packet(packet);
+            if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+                if(!parent){
+                    if(!stopped)
+                        run = true;
+                    @SuppressWarnings("SynchronizeOnNonFinalField")
+                    Thread thread = new Thread(() -> {
+                        java.util.Scanner scanner = new java.util.Scanner(System.in);
+                        try {
+                            while (run) {
+                                String line = scanner.nextLine();
+                                if (line != null) {
+                                    Packet packet = Packet.open(line.replace("\n", ""));
+                                    Object obj = packet.getObject();
+                                    switch (packet.getDirection()) {
+                                        case -1:
+                                            Thread t1 = new Thread(() -> {
+                                                synchronized(syncsForChildren){
+                                                    for(Sync sync : syncsForChildren){
+                                                        sync.packet(packet);
+                                                    }
                                                 }
-                                            }
-                                        });
-                                        t1.setPriority(Thread.MAX_PRIORITY);
-                                        t1.start();
-                                        break;
-                                    case 1:
-                                        Thread t2 = new Thread(() -> {
-                                            java.io.Serializable objReturn = received.receivedSync(obj);
-                                            if(objReturn == null)
-                                                objReturn = "erognzbgihnenfbn";
-                                            Packet packetReturn = new Packet(objReturn, -1, packet.getIdReturn());
-                                            System.out.println(packetReturn);
-                                        });
-                                        t2.setPriority(Thread.MAX_PRIORITY);
-                                        t2.start();
-                                        break;
-                                    default:
-                                        if(obj != null && obj instanceof String && obj.toString().equals("erougneruogbnueor"))
-                                            stop();
-                                        else
-                                            received.received(obj);
-                                        break;
+                                            });
+                                            t1.setPriority(Thread.MAX_PRIORITY);
+                                            t1.start();
+                                            break;
+                                        case 1:
+                                            Thread t2 = new Thread(() -> {
+                                                java.io.Serializable objReturn = received.receivedSync(obj);
+                                                if(objReturn == null)
+                                                    objReturn = "erognzbgihnenfbn";
+                                                Packet packetReturn = new Packet(objReturn, -1, packet.getIdReturn());
+                                                System.out.println(packetReturn);
+                                            });
+                                            t2.setPriority(Thread.MAX_PRIORITY);
+                                            t2.start();
+                                            break;
+                                        default:
+                                            if(obj != null && obj instanceof String && obj.toString().equals("erougneruogbnueor"))
+                                                stop();
+                                            else
+                                                received.received(obj);
+                                            break;
+                                    }
                                 }
                             }
+                        } catch (Exception ex) {
+
                         }
-                    } catch (Exception ex) {
-                        
-                    }
-                });
-                thread.setPriority(Thread.MAX_PRIORITY);
-                thread.start();
-            }else
-                throw WrongTypeException.isParentTypeIn();
+                    });
+                    thread.setPriority(Thread.MAX_PRIORITY);
+                    thread.start();
+                }else
+                    throw WrongTypeException.isParentTypeIn();
+            }else{
+                throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+            }
         }
         
         /**
@@ -669,10 +698,14 @@ public final class InterPipe {
          * @param received Permet de rediriger les objets des processus fils
          */
         public void read(IReceivedForParents received){
-            if(parent)
-                receivedForParents = received;
-            else
-                throw WrongTypeException.isChildTypeIn();
+            if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+                if(parent)
+                    receivedForParents = received;
+                else
+                    throw WrongTypeException.isChildTypeIn();
+            }else{
+                throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+            }
         }
         
         
@@ -704,10 +737,14 @@ public final class InterPipe {
          * @param obj Correspond à l'objet erreur à envoyer
          */
         public void print(java.io.Serializable obj){
-            if(!parent)
-                System.err.println(new Packet(obj));
-            else
-                throw WrongTypeException.isParentType();
+            if(IS_WINDOWS || (IS_LINUX && !IS_ANDROID)){
+                if(!parent)
+                    System.err.println(new Packet(obj));
+                else
+                    throw WrongTypeException.isParentType();
+            }else{
+                throw new OSNotSupportedException("InterPipe is only supported by Windows and Linux (except Android) !");
+            }
         }
         
         
