@@ -18,6 +18,15 @@ public class ExpandableArray_float extends Array implements Iterable<Float>{
     
     
     
+    // <editor-fold defaultstate="collapsed" desc="SERIAL_VERSION_UID">
+    /**
+     * Correspond au numéro de série qui identifie le type de dé/sérialization utilisé pour l'objet
+     */
+    private static final long serialVersionUID = 1L;
+    // </editor-fold>
+    
+    
+    
 //CONSTRUCTORS
     /**
      * Crée un tableau extensible de float

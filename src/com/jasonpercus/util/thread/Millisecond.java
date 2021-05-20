@@ -20,6 +20,15 @@ public class Millisecond extends Number implements java.io.Serializable, Compara
     
     
     
+    // <editor-fold defaultstate="collapsed" desc="SERIAL_VERSION_UID">
+    /**
+     * Correspond au numéro de série qui identifie le type de dé/sérialization utilisé pour l'objet
+     */
+    private static final long serialVersionUID = 1L;
+    // </editor-fold>
+    
+    
+    
 //ATTRIBUTS
     /**
      * Correspond au nombre de millisecondes
