@@ -94,6 +94,49 @@ public class File extends java.io.File {
             }
         }else throw new java.io.FileNotFoundException(this+" not exists !");
     }
+
+    /**
+     * Renvoie une liste de fichiers filtrés par leur extension
+     * @param extensions Correspond à la liste des extensions qui seront autorisés à apparaître dans la liste filtré de sortie
+     * @return Retourne une liste de fichiers filtrés par leur extension
+     */
+    public java.io.File[] listFilesByExtension(String...extensions) {
+        java.io.File[] files = this.listFiles((java.io.File pathname) -> {
+            File f = castTo(pathname);
+            try {
+                String ext = f.getExtension();
+                
+                if(extensions == null) return false;
+                if(extensions.length == 0) return false;
+                
+                for(String extension : extensions){
+                    if(extension != null && extension.equals(ext)){
+                        return true;
+                    }
+                }
+                return false;
+                
+            } catch (java.io.FileNotFoundException ex) {
+                return false;
+            }
+        });
+        return files;
+    }
+
+    /**
+     * Renvoie une liste de noms de fichiers filtrés par leur extension
+     * @param extensions Correspond à la liste des extensions qui seront autorisés à apparaître dans la liste filtré de sortie
+     * @return Retourne une liste de noms de fichiers filtrés par leur extension
+     */
+    public String[] listByExtension(String...extensions) {
+        java.io.File[] files = listFilesByExtension(extensions);
+        if(files == null) return null;
+        String[] strs = new String[files.length];
+        for(int i=0;i<files.length;i++){
+            strs[i] = files[i].getName();
+        }
+        return strs;
+    }
     
     
     
