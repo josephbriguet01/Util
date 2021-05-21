@@ -17,6 +17,15 @@ package com.jasonpercus.util;
  * @version 1.0
  */
 public class File extends java.io.File {
+    
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="SERIAL_VERSION_UID">
+    /**
+     * Correspond au numéro de série qui identifie le type de dé/sérialization utilisé pour l'objet
+     */
+    private static final long serialVersionUID = 1L;
+    // </editor-fold>
 
     
     
@@ -27,6 +36,14 @@ public class File extends java.io.File {
      */
     public File(String pathname) {
         super(pathname);
+    }
+    
+    /**
+     * Crée une nouvelle instance de File en convertissant le fichier donné en un chemin d'accès abstrait
+     * @param file Correspond au fichier à convertir
+     */
+    public File(java.io.File file){
+        super(path(file));
     }
 
     /**
@@ -76,6 +93,38 @@ public class File extends java.io.File {
                     return "";
             }
         }else throw new java.io.FileNotFoundException(this+" not exists !");
+    }
+    
+    
+    
+//METHODE PUBLIC STATIC
+    /**
+     * Converti un {@link java.io.File} en {@link File} qui est la nouvelle version
+     * @param file Correspond au fichier à convertir
+     * @return Retourne la nouvelle instance de fichier
+     */
+    public static File castTo(java.io.File file){
+        try {
+            return new File(file.getCanonicalFile().getAbsolutePath());
+        } catch (java.io.IOException ex) {
+            return new File(file.getAbsolutePath());
+        }
+    }
+    
+    
+    
+//METHODE PRIVATE STATIC
+    /**
+     * Renvoie le chemin du fichier
+     * @param file Correspond au fichier dont on veut récupérer le chemin
+     * @return Retourne le chemin du fichier
+     */
+    private static String path(java.io.File file){
+        try {
+            return file.getCanonicalFile().getAbsolutePath();
+        } catch (java.io.IOException ex) {
+            return file.getAbsolutePath();
+        }
     }
     
     
