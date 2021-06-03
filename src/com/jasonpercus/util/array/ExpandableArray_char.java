@@ -13,6 +13,7 @@ package com.jasonpercus.util.array;
 /**
  * Cette classe réprésente un tableau extensible de char. Au départ sa taille est de 0.
  * @author JasonPercus
+ * @version 1.1
  */
 public class ExpandableArray_char extends Array implements Iterable<Character>{
     

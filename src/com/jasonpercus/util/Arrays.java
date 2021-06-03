@@ -14,7 +14,7 @@ package com.jasonpercus.util;
  * Cette classe contient quelques méthodes utiles aux tableaux de taille fixe
  * @see java.util.Arrays
  * @author JasonPercus
- * @version 1.0
+ * @version 1.1
  */
 public class Arrays {
 
@@ -45,6 +45,19 @@ public class Arrays {
     }
     
     /**
+     * Inverse les élements d'un tableau. Le dernier devant le premier, le premier le dernier...
+     * @param <T> Correspond au type d'objet dans le tableau à inverser
+     * @param array Correspond au tableau dont on cherche à inverser les éléments
+     */
+    public static <T> void invert(T[] array){
+        for (int i = 0; i < array.length / 2; i++) {
+            T temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
+        }
+    }
+    
+    /**
      * Trie un tableau d'objet
      * @param <T> Correspond au type d'objets contenus dans le tableau
      * @param array Correspond au tableau qui sera trié
@@ -52,7 +65,6 @@ public class Arrays {
     public static <T> void sort(T[] array){
         java.util.Arrays.sort(array);
     }
-    
     
     
     

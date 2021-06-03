@@ -13,6 +13,7 @@ package com.jasonpercus.util.array;
 /**
  * Cette classe réprésente un tableau extensible de booléen. Au départ sa taille est de 0.
  * @author JasonPercus
+ * @version 1.1
  */
 public class ExpandableArray_boolean extends Array implements Iterable<Boolean>{
     

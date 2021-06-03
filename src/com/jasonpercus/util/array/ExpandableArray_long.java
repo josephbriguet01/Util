@@ -13,6 +13,7 @@ package com.jasonpercus.util.array;
 /**
  * Cette classe réprésente un tableau extensible de long. Au départ sa taille est de 0.
  * @author JasonPercus
+ * @version 1.1
  */
 public class ExpandableArray_long extends Array implements Iterable<Long>{
     

@@ -13,6 +13,7 @@ package com.jasonpercus.util.array;
 /**
  * Cette classe réprésente un tableau extensible d'objets. Au départ sa taille est de 0.
  * @author JasonPercus
+ * @version 1.1
  * @param <E> Correspond au type d'objet contenu dans un tableau extensible
  */
 public class ExpandableArray<E> extends Array implements Iterable<E> {
@@ -39,6 +40,7 @@ public class ExpandableArray<E> extends Array implements Iterable<E> {
 //CONSTRUCTORS
     /**
      * Crée un tableau extensible d'objets
+     * @deprecated Ne pas utiliser ! Ce constructeur sert uniquement pour la dé/sérialisation. Utiliser {@link #ExpandableArray(java.lang.Class)}
      */
     public ExpandableArray() {
         this(null);
