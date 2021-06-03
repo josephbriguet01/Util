@@ -1,10 +1,10 @@
 /*
- * Copyright (C) BRIGUET Systems, Inc - All Rights Reserved
+ * Copyright (C) JasonPercus Systems, Inc - All Rights Reserved
  *
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by Briguet, May 2021
+ * Written by JasonPercus, May 2021
  */
 package com.jasonpercus.util.process.java;
 
