@@ -997,7 +997,7 @@ public class WinUser {
 //ENUMS
     /**
      * Cette classe d'énumération contient les valeurs possibles d'affichage dont la couleur doit être récupérée
-     * @see #getSysColor(com.jasonpercus.util.Window.SysColor)
+     * @see WinUser#getSysColor(com.jasonpercus.util.WinUser.SysColor)
      * @author JasonPercus
      * @version 1.0
      */
