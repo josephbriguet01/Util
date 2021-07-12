@@ -105,9 +105,13 @@ public class ShowingProcessor extends SimplifiedAbstractProcessor {
                             if(i.getName().equals("com.jasonpercus.util.Showing")){
                                 toRemove.add(i);
                             }else if(!i.isStatic() && !i.isAll()){
-                                if(i.getName().indexOf("java.") == 0){
+                                if(i.getName().indexOf("javax.") == 0){
                                     toRemove.add(i);
                                 } else if (i.getName().indexOf("java.") == 0){
+                                    toRemove.add(i);
+                                } else if (i.getName().indexOf("androidx.") == 0){
+                                    toRemove.add(i);
+                                } else if (i.getName().indexOf("android.") == 0){
                                     toRemove.add(i);
                                 }
                             }
