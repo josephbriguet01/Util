@@ -21,9 +21,19 @@ package com.jasonpercus.util.thread;
  * @version 1.0
  */
 public abstract class During<In, StartOut, BeforeOut, DuringOut> {
+
+    
+    
+//CONSTRUCTOR
+    /**
+     * Crée un objet During
+     */
+    public During() {
+    }
     
     
     
+//METHODE PUBLIC
     /**
      * Est appelé à être exécuté en parallèle de la méthode {@link CodeProcessing#start(com.jasonpercus.util.thread.OnCodeProcess, java.lang.Object, com.jasonpercus.util.thread.During...) CodeProcessing.start()}. Cette dernière va d'ailleur attendre le résultat de cette méthode avant de terminer son exécution.
      * Dans l'ordre des appels, cette méthode est appelée en troisième position (voir la documentation de la classe {@link OnCodeProcess}) derrière {@link OnCodeProcess#start(java.lang.Object) OnCodeProcess.start()} et {@link OnCodeProcess#before(java.lang.Object, java.lang.Object) OnCodeProcess.before()}

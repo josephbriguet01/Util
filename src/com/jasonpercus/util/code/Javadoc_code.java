@@ -210,7 +210,7 @@ public class Javadoc_code extends Code {
     /**
      * Renvoie la signature du bloc javadoc
      * @return Retourne la signature du bloc javadoc
-     * @deprecated Utiliser la méthode {@link #toString()}
+     * @deprecated @deprecated <div style="color: #D45B5B; font-style: italic">Utiliser la méthode {@link #toString()}</div>
      */
     @Override
     public String getSignature() {

@@ -98,7 +98,7 @@ public abstract class Element_javadoc extends Code {
     /**
      * Renvoie la signature du bout de code
      * @return Retourne la signature du bout de code
-     * @deprecated Utiliser la méthode {@link #toString()}
+     * @deprecated @deprecated <div style="color: #D45B5B; font-style: italic">Utiliser la méthode {@link #toString()}</div>
      */
     @Override
     public String getSignature() {

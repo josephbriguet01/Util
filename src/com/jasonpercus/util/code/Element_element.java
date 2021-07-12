@@ -343,6 +343,8 @@ public abstract class Element_element extends Code {
 //ENUMERATION
     /**
      * Cette énumération énumère les Modifiers de visibilité (public | protected | private)
+     * @author JasonPercus
+     * @version 1.0
      */
     public enum Visibility {
     

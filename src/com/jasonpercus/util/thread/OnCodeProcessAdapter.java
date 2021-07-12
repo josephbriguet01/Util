@@ -35,6 +35,16 @@ public class OnCodeProcessAdapter<In, StartOut, BeforeOut, DuringOut, AfterOut> 
 
     
     
+//CONSTRUCTOR
+    /**
+     * Crée un adaptateur OnCodeProcess
+     */
+    public OnCodeProcessAdapter() {
+    }
+    
+    
+    
+//METHODES PUBLICS
     /**
      * Est appelée une fois que {@link CodeProcessing#start(com.jasonpercus.util.thread.OnCodeProcess, java.lang.Object, com.jasonpercus.util.thread.During...) CodeProcessing.start()} est appelée.
      * Ainsi on peut dire que cette méthode sert essentiellement à montrer que la méthode {@link CodeProcessing#start(com.jasonpercus.util.thread.OnCodeProcess, java.lang.Object, com.jasonpercus.util.thread.During...) CodeProcessing.start()} est lancée

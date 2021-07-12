@@ -66,9 +66,19 @@ package com.jasonpercus.util.thread;
  * @version 1.0
  */
 public class TimedResult {
+
+    
+    
+//CONSTRUCTOR
+    /**
+     * Crée un objet TimedResult
+     */
+    public TimedResult() {
+    }
     
     
     
+//METHODES PUBLICS
     /**
      * Execute la méthode {@link CodeTimeResult#run(java.lang.Object) CodeTimeResult.run()}.
      * Son exécution ne dépassera pas maxTime millisecondes. Si la méthode devait mettre plus de temps, alors celle-ci serait killé et un résultat par défaut serait renvoyé
