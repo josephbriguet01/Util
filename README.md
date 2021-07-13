@@ -1,4 +1,4 @@
-﻿﻿Copyright © JasonPercus Systems, Inc - All Rights Reserved
+﻿Copyright © JasonPercus Systems, Inc - All Rights Reserved
 # **Introduction**
 
 Cette librairie apporte une multitude de fonctions utiles permettant tout et n’importe quoi. Vous souhaitez faire des requêtes vers une base MySQL ? Dé/Chiffrer du texte ? Ou encore connaitre le nom des cartes réseaux d’un PC ? Alors cette librairie est faite pour vous. De plus elle intègre en son sein 5 projets connues. À savoir :
@@ -13,6 +13,7 @@ D’ailleurs les projets ci-dessus sont notamment très utilisés par les divers
 
 # 1. **Annotations processeurs**
 Les annotations processeurs sont des annotations qui seront analysées par le compilateur lorsqu'il sera en train de compiler un bout de code annoté.
+
 ## 1.1. Comment déclarer les annotations sur Netbeans
 
 Pour que les annotations processeurs soient prises en compte, il faut:
@@ -147,12 +148,16 @@ Il existe plusieurs façon de l'utiliser:
 
 # 2. **Dé/Chiffrement**
 La librairie Util permet entre-autre de dé/chiffrer des textes/tableau de bytes.
+
 ## 2.1. Base
+
 Cette classe n'a pas de réelle fonction pour le développeur lambda. Elle est la classe mère de la classe ```Base64```. Mais elle peut servir pour créer d'autre base comme par exemple la base 32. Exemple, pour créer une base 32:
 ```java
 Base base32 = new Base(32);
 ```
+
 ## 2.2. Base64
+
 Cette classe est très utilisée pour convertir un tableau de bytes en texte visible par l'utilisateur et vice-versa. Voici un exemple de son utilisation:
 ```java
 //Création d'un objet Base64
@@ -182,6 +187,7 @@ Il existe plusieurs types de chiffrement Base64:
 > Attention: Ce système Base64 n'est pas compatibles avec les systèmes existants sur le marché. Autrement dit, vous ne pouvez pas chiffrer avec la classe ```java.util.Base64``` et déchiffrer avec la classe ```com.jasonpercus.encryption.base64.Base64``` et inversement.
 
 ## 2.3. RSA
+
 Cette classe sert pour chiffrer du texte ou tableau de bytes en tableau chiffré de bytes et inversement déchiffrer un tableau de bytes en texte. Elle s'appuie sur l'algorithme existant RSA. Voici un exemple de son utilisation:
 ```java
 //Création d'un objet RSA
@@ -211,6 +217,7 @@ Decrypted: Mon texte converti en bytes
 > Attention: Ce système RSA n'est pas compatibles avec les systèmes existants sur le marché. Autrement dit, vous ne pouvez pas chiffrer avec la classe ```java.util.RSA``` et déchiffrer avec la classe ```com.jasonpercus.encryption.rsa.RSA``` et inversement.
 
 ## 2.4. AES
+
 Cette classe sert pour chiffrer du texte ou tableau de bytes en tableau chiffré de bytes et inversement déchiffrer un tableau de bytes en texte. Elle s'appuie sur l'algorithme existant AES. Voici un exemple de son utilisation:
 ```java
 //Création d'un objet AES
@@ -239,6 +246,7 @@ Decrypted: Mon texte converti en bytes
 > Attention: Ce système AES n'est pas compatibles avec les systèmes existants sur le marché. Autrement dit, vous ne pouvez pas chiffrer avec la classe ```java.util.AES``` et déchiffrer avec la classe ```com.jasonpercus.encryption.aes.AES``` et inversement.
 
 ## 2.5. JPS (Jason Percus Security)
+
 Cette classe sert pour chiffrer du texte ou tableau de bytes en tableau chiffré de bytes et inversement déchiffrer un tableau de bytes en texte. Elle s'appuie sur un nouvel algorithme JPS. Voici un exemple de son utilisation:
 ```java
 //Création d'un objet JPS
@@ -870,7 +878,9 @@ try {
 ```
 
 # 8. **Key**
+
    ## 8.1. Classe ```Code```
+
 Cette classe permet de représenter une touche de clavier. Chaque touche de clavier est représenté avec Java par en entier. Cette classe n'est pas instanciable, elle permet seulement de faire le lien entre un entier et le nom d'une touche
 ```java
 //Affiche le nom d'une touche de clavier
@@ -879,8 +889,9 @@ System.out.println(Code.name(65)); //A
 //Et inversement affiche le code d'une touche de clavier
 System.out.println(Code.code("A")); //65
 ```
-   
+
    ## 8.2. Classe ```Combination```
+
 Cette classe permet de représenter une combinaison de touches (exemple: ```Ctrl + Alt + Suppr```).
 ```java
 //Correspond à la touche Suppr.
@@ -895,8 +906,9 @@ System.out.println(combination); //Ctrl + Alt + DELETE
 //Execute la combinaison avec le robot Java
 combination.execute();
 ```
-   
+
    ## 8.3. Classe ```CombinationCapture```
+
 Cette classe permet de récupérer une combinaison de touches pressées par l'utilisateur. Voici un exemple sur la récupération d'une combinaison de touche à partir d'un ```JTextField```.
 ```java
 //Correspond à l'évènement de capture
@@ -913,6 +925,7 @@ CombinationCapture capture = new CombinationCapture(monJTextField, listener);
 > Si on appuie sur les touches Ctrl + Alt + Suppr à partir du ```JTextField```, le listener affiche Ctrl + Alt + DELETE
 
 # 9. **MouseArea**
+
    ## 9.1. Enumération ```ModeArea```
 
 Cette énumération énumère deux modes. Le mode additif et le mode soustractif.
@@ -920,6 +933,7 @@ Cette énumération énumère deux modes. Le mode additif et le mode soustractif
 - Le mode soustractif: permet de supprimer une zone qui est contrôlée. Autrement dit lorsque la souris passera sur la zone en question, il ne se passera plus rien.
 
 Ces deux modes doivent être ajoutés au besoin, à une zone pour définir une zone de contrôle.
+
    ## 9.2. Classe ```Zone```
 
 Cette classe représente un ```java.awt.Graphics``` invisible qui servira comme zone de contrôle lorsque la souris passera dessus. Donc quasiment tout ce qui peut être fait avec un objet ```Graphics``` peut être fait avec un objet ```Zone```.
