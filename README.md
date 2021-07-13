@@ -917,7 +917,6 @@ Cette énumération énumère deux modes. Le mode additif et le mode soustractif
 - Le mode additif: permet d'ajouter une zone qui sera contrôlée. Autrement dit lorsque la souris passera sur la zone en question, il se passera quelque chose.
 - Le mode soustractif: permet de supprimer une zone qui est contrôlée. Autrement dit lorsque la souris passera sur la zone en question, il ne se passera plus rien.
 
-
    ## 9.2. Classe ```Zone```
 Cette classe représente un ```java.awt.Graphics``` invisible qui servira comme zone de contrôle lorsque la souris passera dessus. Donc quasiment tout ce qui peut être fait avec un objet ```Graphics``` peut être fait avec un objet ```Zone```.
 > Pour plus de précision lire la javadoc associée avec cette classe
