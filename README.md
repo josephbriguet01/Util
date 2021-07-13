@@ -1,4 +1,4 @@
-﻿﻿Copyright (C) JasonPercus Systems, Inc - All Rights Reserved
+﻿﻿Copyright © JasonPercus Systems, Inc - All Rights Reserved
 # **Introduction**
 
 Cette librairie apporte une multitude de fonctions utiles permettant tout et n’importe quoi. Vous souhaitez faire des requêtes vers une base MySQL ? Dé/Chiffrer du texte ? Ou encore connaitre le nom des cartes réseaux d’un PC ? Alors cette librairie est faite pour vous. De plus elle intègre en son sein 5 projets connues. À savoir :
@@ -720,17 +720,21 @@ System.out.println(scanner.getFreePortUDP());
 
 # 6. **ExpandableArray**
 Les classes ExpandableArray représentent des tableaux qui peuvent s'étendre ce qui n'est pas le cas d'un tableau classique. Pourquoi utiliser un ExpandableArray lorsqu'il existe la classe ```java.util.List``` ? Pour répondre à cette question, voici un tableau de comparaison entre un tableau d'entier ```int[]```, une liste d'entier ```java.util.List<Integer>``` et un ExpandableArray d'entier ```com.jasonpercus.util.array.ExpandableArray_int``` lorsqu'il y a énormément d'éléments dans chacun d'eux:
+
 |                         | Vitesse processeur | Elargissement |
-|-------------------------|--------------------|---------------|
+|-------------------------|:------------------:|:-------------:|
 | int[]                   | Excellente         | Impossible    |
 | java.util.List<Integer> | Mauvaise           | Oui           |
 | ExpandableArray_int     | Bonne              | Oui           |
+
 Et lorsqu'il y a peu d'éléments:
+
 |                         | Vitesse processeur | Elargissement |
-|-------------------------|--------------------|---------------|
+|-------------------------|:------------------:|:-------------:|
 | int[]                   | Excellente         | Impossible    |
 | java.util.List<Integer> | Bonne              | Oui           |
 | ExpandableArray_int     | Moyenne            | Oui           |
+
 En fonction des tableaux si dessus on peut conclure:
 
 **Lorsque l'on connait la taille d'une collection d'entiers et que celle-ci ne bougera pas:**
