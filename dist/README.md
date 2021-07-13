@@ -1027,7 +1027,8 @@ System.out.println(InterPipe.getSync("Quelle heure est-il ?", false)); //Il est 
 
 # 11. **Thread**
 ***Cette section n'est pas détaillée pour le moment. Veuillez consulter la javadoc qui explique comment utiliser les différentes classes et interface***
-Voici un tableau récapitulatif du fonctionnement des classes et interfaces principales
+Voici un tableau récapitulatif du fonctionnement des classes et interfaces principales:
+
 | Nom            |    Type   | Description sommaire                                                                                                   |
 |----------------|:---------:|------------------------------------------------------------------------------------------------------------------------|
 | CodeProcessing |   class   | Permet de lancer plusieurs threads en même temps et attend leurs résultats respectifs                                  |
