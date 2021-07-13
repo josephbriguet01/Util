@@ -746,7 +746,8 @@ En fonction des tableaux si dessus on peut conclure:
 **Et Lorsque la collection doit contenir beaucoup d'élément:**
 > Il est préférable d'utiliser un ExpandableArray ```ExpandableArray_int```
 
-Ce qui est valable pour les entiers est également valable pour tout les types primitifs et également les objets. Voici le nom des classes associées à chaque type
+Ce qui est valable pour les entiers est également valable pour tout les types primitifs et également les objets. Voici le nom des classes associées à chaque type:
+
 | Tableau      | Equivalent ExpandableArray  |
 |--------------|-----------------------------|
 | byte[]       | ExpandableArray_byte        |
