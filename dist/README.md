@@ -879,7 +879,7 @@ try {
 
 # 8. **Key**
 
-   ## 8.1. Classe ```Code```
+   ## 8.1. Classe Code
 
 Cette classe permet de représenter une touche de clavier. Chaque touche de clavier est représenté avec Java par en entier. Cette classe n'est pas instanciable, elle permet seulement de faire le lien entre un entier et le nom d'une touche
 ```java
@@ -890,7 +890,7 @@ System.out.println(Code.name(65)); //A
 System.out.println(Code.code("A")); //65
 ```
 
-   ## 8.2. Classe ```Combination```
+   ## 8.2. Classe Combination
 
 Cette classe permet de représenter une combinaison de touches (exemple: ```Ctrl + Alt + Suppr```).
 ```java
@@ -907,7 +907,7 @@ System.out.println(combination); //Ctrl + Alt + DELETE
 combination.execute();
 ```
 
-   ## 8.3. Classe ```CombinationCapture```
+   ## 8.3. Classe CombinationCapture
 
 Cette classe permet de récupérer une combinaison de touches pressées par l'utilisateur. Voici un exemple sur la récupération d'une combinaison de touche à partir d'un ```JTextField```.
 ```java
@@ -926,7 +926,7 @@ CombinationCapture capture = new CombinationCapture(monJTextField, listener);
 
 # 9. **MouseArea**
 
-   ## 9.1. Enumération ```ModeArea```
+   ## 9.1. Enumération ModeArea
 
 Cette énumération énumère deux modes. Le mode additif et le mode soustractif.
 - Le mode additif: permet d'ajouter une zone qui sera contrôlée. Autrement dit lorsque la souris passera sur la zone en question, il se passera quelque chose.
@@ -934,7 +934,7 @@ Cette énumération énumère deux modes. Le mode additif et le mode soustractif
 
 Ces deux modes doivent être ajoutés au besoin, à une zone pour définir une zone de contrôle.
 
-   ## 9.2. Classe ```Zone```
+   ## 9.2. Classe Zone
 
 Cette classe représente un ```java.awt.Graphics``` invisible qui servira comme zone de contrôle lorsque la souris passera dessus. Donc quasiment tout ce qui peut être fait avec un objet ```Graphics``` peut être fait avec un objet ```Zone```.
 
