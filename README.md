@@ -879,7 +879,7 @@ System.out.println(Code.name(65)); //A
 System.out.println(Code.code("A")); //65
 ```
    
-   ## 8.1. Classe ```Combination```
+   ## 8.2. Classe ```Combination```
 Cette classe permet de représenter une combinaison de touches (exemple: ```Ctrl + Alt + Suppr```).
 ```java
 //Correspond à la touche Suppr.
@@ -895,7 +895,7 @@ System.out.println(combination); //Ctrl + Alt + DELETE
 combination.execute();
 ```
    
-   ## 8.1. Classe ```CombinationCapture```
+   ## 8.3. Classe ```CombinationCapture```
 Cette classe permet de récupérer une combinaison de touches pressées par l'utilisateur. Voici un exemple sur la récupération d'une combinaison de touche à partir d'un ```JTextField```.
 ```java
 //Correspond à l'évènement de capture
@@ -913,12 +913,15 @@ CombinationCapture capture = new CombinationCapture(monJTextField, listener);
 
 # 9. **MouseArea**
    ## 9.1. Enumération ```ModeArea```
+
 Cette énumération énumère deux modes. Le mode additif et le mode soustractif.
 - Le mode additif: permet d'ajouter une zone qui sera contrôlée. Autrement dit lorsque la souris passera sur la zone en question, il se passera quelque chose.
 - Le mode soustractif: permet de supprimer une zone qui est contrôlée. Autrement dit lorsque la souris passera sur la zone en question, il ne se passera plus rien.
 
    ## 9.2. Classe ```Zone```
+
 Cette classe représente un ```java.awt.Graphics``` invisible qui servira comme zone de contrôle lorsque la souris passera dessus. Donc quasiment tout ce qui peut être fait avec un objet ```Graphics``` peut être fait avec un objet ```Zone```.
+
 > Pour plus de précision lire la javadoc associée avec cette classe
 
 # 10. **Process**
