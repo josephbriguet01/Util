@@ -8,6 +8,12 @@
  */
 package com.jasonpercus.network;
 
+import com.jasonpercus.network.ping.Ping;
+import com.jasonpercus.network.ping.ResultPing;
+import com.jasonpercus.network.ping.SuccessPing;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 
 /**
@@ -108,6 +114,28 @@ public class IPv4 extends Number implements Comparable<IPv4>, Cloneable, CharSeq
         if(number>3 || number<0) return -1;
         String split[] = ipv4.split("\\.");
         return Integer.parseInt(split[number]);
+    }
+    
+    /**
+     * Envoie un ping à destination de cette adresse IP
+     * @return Retourne le résultat de l'adresse IP
+     * @throws Exception S'il y a la moindre exception
+     */
+    public ResultPing ping() throws Exception {
+        return Ping.execute(this);
+    }
+    
+    /**
+     * Renvoie si oui ou non l'adresse ip est accessible sur le réseau (cette méthode envoie un ping à destination de l'adresse IP)
+     * @return Retourne true si l'adresse IP est accessible sur le réseau, sinon false
+     */
+    public boolean isAccessible() {
+        try {
+            ResultPing result = ping();
+            return result instanceof SuccessPing;
+        } catch (Exception ex) {
+            return false;
+        }
     }
     
     /**
