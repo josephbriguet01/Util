@@ -63,47 +63,47 @@ public class JIP extends javax.swing.JPanel {
     /**
      * Correspond à la liste des ActionListeners
      */
-    private final java.util.List<java.awt.event.ActionListener> actionListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.awt.event.ActionListener> actionListeners;
     
     /**
      * Correspond à la liste des CaretListeners
      */
-    private final java.util.List<javax.swing.event.CaretListener> caretListeners = new java.util.ArrayList<>();
+    private final java.util.List<javax.swing.event.CaretListener> caretListeners;
     
     /**
      * Correspond à la liste des FocusListeners
      */
-    private final java.util.List<java.awt.event.FocusListener> focusListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.awt.event.FocusListener> focusListeners;
     
     /**
      * Correspond à la liste des KeyListeners
      */
-    private final java.util.List<java.awt.event.KeyListener> keyListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.awt.event.KeyListener> keyListeners;
     
     /**
      * Correspond à la liste des MouseListeners
      */
-    private final java.util.List<java.awt.event.MouseListener> mouseListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.awt.event.MouseListener> mouseListeners;
     
     /**
      * Correspond à la liste des MouseMotionListeners
      */
-    private final java.util.List<java.awt.event.MouseMotionListener> mouseMotionListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.awt.event.MouseMotionListener> mouseMotionListeners;
     
     /**
      * Correspond à la liste des MouseWheelListeners
      */
-    private final java.util.List<java.awt.event.MouseWheelListener> mouseMouseWheelListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.awt.event.MouseWheelListener> mouseMouseWheelListeners;
     
     /**
      * Correspond à la liste des PropertyChangeListeners
      */
-    private final java.util.List<java.beans.PropertyChangeListener> propertyChangeListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.beans.PropertyChangeListener> propertyChangeListeners;
     
     /**
      * Correspond à la liste des VetoableChangeListeners
      */
-    private final java.util.List<java.beans.VetoableChangeListener> vetoableChangeListeners = new java.util.ArrayList<>();
+    private final java.util.List<java.beans.VetoableChangeListener> vetoableChangeListeners;
     
     /**
      * Correspond à la liste des blocs IP du JIP
@@ -179,6 +179,16 @@ public class JIP extends javax.swing.JPanel {
      */
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public JIP(IPv4 ip){
+        super();
+        this.actionListeners = new java.util.ArrayList<>();
+        this.caretListeners = new java.util.ArrayList<>();
+        this.focusListeners = new java.util.ArrayList<>();
+        this.keyListeners = new java.util.ArrayList<>();
+        this.mouseListeners = new java.util.ArrayList<>();
+        this.mouseMotionListeners = new java.util.ArrayList<>();
+        this.mouseMouseWheelListeners = new java.util.ArrayList<>();
+        this.propertyChangeListeners = new java.util.ArrayList<>();
+        this.vetoableChangeListeners = new java.util.ArrayList<>();
         init();
         this.setIP(ip);
     }
@@ -739,7 +749,7 @@ public class JIP extends javax.swing.JPanel {
      * @param listener Correspond à l'ActionListener à ajouter
      */
     public synchronized void addActionListener(java.awt.event.ActionListener listener) {
-        if(listener != null && !actionListeners.contains(listener)){
+        if(listener != null && actionListeners != null && !actionListeners.contains(listener)){
             actionListeners.add(listener);
         }
     }
@@ -749,7 +759,7 @@ public class JIP extends javax.swing.JPanel {
      * @param listener Correspond à l'ActionListener à supprimer
      */
     public synchronized void removeActionListener(java.awt.event.ActionListener listener) {
-        if(listener != null && actionListeners.contains(listener)){
+        if(listener != null && actionListeners != null && actionListeners.contains(listener)){
             actionListeners.remove(listener);
         }
     }
@@ -759,11 +769,13 @@ public class JIP extends javax.swing.JPanel {
      * @return Retourne un tableau des ActionListener du JIP
      */
     public synchronized java.awt.event.ActionListener[] getActionListeners() {
-        java.awt.event.ActionListener[] actions = new java.awt.event.ActionListener[actionListeners.size()];
-        for(int i=0;i<actions.length;i++){
-            actions[i] = actionListeners.get(i);
-        }
-        return actions;
+        if(actionListeners != null){
+            java.awt.event.ActionListener[] actions = new java.awt.event.ActionListener[actionListeners.size()];
+            for(int i=0;i<actions.length;i++){
+                actions[i] = actionListeners.get(i);
+            }
+            return actions;
+        } else return new java.awt.event.ActionListener[0];
     }
 
     /**
@@ -771,7 +783,7 @@ public class JIP extends javax.swing.JPanel {
      * @param listener Correspond au CaretListener à ajouter
      */
     public synchronized void addCaretListener(javax.swing.event.CaretListener listener) {
-        if(listener != null && !caretListeners.contains(listener)){
+        if(listener != null && caretListeners != null && !caretListeners.contains(listener)){
             caretListeners.add(listener);
         }
     }
@@ -781,7 +793,7 @@ public class JIP extends javax.swing.JPanel {
      * @param listener Correspond au CaretListener à supprimer
      */
     public synchronized void removeCaretListener(javax.swing.event.CaretListener listener) {
-        if(listener != null && caretListeners.contains(listener)){
+        if(listener != null && caretListeners != null && caretListeners.contains(listener)){
             caretListeners.remove(listener);
         }
     }
@@ -791,11 +803,13 @@ public class JIP extends javax.swing.JPanel {
      * @return Retourne un tableau des CaretListener du JIP
      */
     public synchronized javax.swing.event.CaretListener[] getCaretListeners() {
-        javax.swing.event.CaretListener[] actions = new javax.swing.event.CaretListener[caretListeners.size()];
-        for(int i=0;i<actions.length;i++){
-            actions[i] = caretListeners.get(i);
-        }
-        return actions;
+        if(caretListeners != null){
+            javax.swing.event.CaretListener[] actions = new javax.swing.event.CaretListener[caretListeners.size()];
+            for(int i=0;i<actions.length;i++){
+                actions[i] = caretListeners.get(i);
+            }
+            return actions;
+        }else return new javax.swing.event.CaretListener[0];
     }
     
     /**
@@ -834,7 +848,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void addFocusListener(java.awt.event.FocusListener listener) {
-        if(listener != null && !focusListeners.contains(listener)){
+        if(listener != null && focusListeners != null && !focusListeners.contains(listener)){
             focusListeners.add(listener);
         }
     }
@@ -845,7 +859,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void removeFocusListener(java.awt.event.FocusListener listener) {
-        if(listener != null && focusListeners.contains(listener)){
+        if(listener != null && focusListeners != null && focusListeners.contains(listener)){
             focusListeners.remove(listener);
         }
     }
@@ -856,11 +870,13 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized java.awt.event.FocusListener[] getFocusListeners() {
-        java.awt.event.FocusListener[] focus = new java.awt.event.FocusListener[focusListeners.size()];
-        for(int i=0;i<focus.length;i++){
-            focus[i] = focusListeners.get(i);
-        }
-        return focus;
+        if(focusListeners != null){
+            java.awt.event.FocusListener[] focus = new java.awt.event.FocusListener[focusListeners.size()];
+            for(int i=0;i<focus.length;i++){
+                focus[i] = focusListeners.get(i);
+            }
+            return focus;
+        }else return new java.awt.event.FocusListener[0];
     }
 
     /**
@@ -899,7 +915,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void addKeyListener(java.awt.event.KeyListener listener) {
-        if(listener != null && !keyListeners.contains(listener)){
+        if(listener != null && keyListeners != null && !keyListeners.contains(listener)){
             keyListeners.add(listener);
         }
     }
@@ -910,7 +926,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void removeKeyListener(java.awt.event.KeyListener listener) {
-        if(listener != null && keyListeners.contains(listener)){
+        if(listener != null && keyListeners != null && keyListeners.contains(listener)){
             keyListeners.remove(listener);
         }
     }
@@ -921,11 +937,13 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized java.awt.event.KeyListener[] getKeyListeners() {
-        java.awt.event.KeyListener[] key = new java.awt.event.KeyListener[keyListeners.size()];
-        for(int i=0;i<key.length;i++){
-            key[i] = keyListeners.get(i);
-        }
-        return key;
+        if(keyListeners != null){
+            java.awt.event.KeyListener[] key = new java.awt.event.KeyListener[keyListeners.size()];
+            for(int i=0;i<key.length;i++){
+                key[i] = keyListeners.get(i);
+            }
+            return key;
+        }else return new java.awt.event.KeyListener[0];
     }
 
     /**
@@ -934,7 +952,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void addMouseListener(java.awt.event.MouseListener listener) {
-        if(listener != null && !mouseListeners.contains(listener)){
+        if(listener != null && mouseListeners != null && !mouseListeners.contains(listener)){
             mouseListeners.add(listener);
         }
     }
@@ -945,7 +963,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void removeMouseListener(java.awt.event.MouseListener listener) {
-        if(listener != null && mouseListeners.contains(listener)){
+        if(listener != null && mouseListeners != null && mouseListeners.contains(listener)){
             mouseListeners.remove(listener);
         }
     }
@@ -956,11 +974,13 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized java.awt.event.MouseListener[] getMouseListeners() {
-        java.awt.event.MouseListener[] mouse = new java.awt.event.MouseListener[mouseListeners.size()];
-        for(int i=0;i<mouse.length;i++){
-            mouse[i] = mouseListeners.get(i);
-        }
-        return mouse;
+        if(mouseListeners != null){
+            java.awt.event.MouseListener[] mouse = new java.awt.event.MouseListener[mouseListeners.size()];
+            for(int i=0;i<mouse.length;i++){
+                mouse[i] = mouseListeners.get(i);
+            }
+            return mouse;
+        }else return new java.awt.event.MouseListener[0];
     }
 
     /**
@@ -969,7 +989,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void addMouseMotionListener(java.awt.event.MouseMotionListener listener) {
-        if(listener != null && !mouseMotionListeners.contains(listener)){
+        if(listener != null && mouseMotionListeners != null && !mouseMotionListeners.contains(listener)){
             mouseMotionListeners.add(listener);
         }
     }
@@ -980,7 +1000,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void removeMouseMotionListener(java.awt.event.MouseMotionListener listener) {
-        if(listener != null && mouseMotionListeners.contains(listener)){
+        if(listener != null && mouseMotionListeners != null && mouseMotionListeners.contains(listener)){
             mouseMotionListeners.remove(listener);
         }
     }
@@ -991,11 +1011,13 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized java.awt.event.MouseMotionListener[] getMouseMotionListeners() {
+        if(mouseMotionListeners != null){
         java.awt.event.MouseMotionListener[] mouse = new java.awt.event.MouseMotionListener[mouseMotionListeners.size()];
         for(int i=0;i<mouse.length;i++){
             mouse[i] = mouseMotionListeners.get(i);
         }
         return mouse;
+        }else return new java.awt.event.MouseMotionListener[0];
     }
 
     /**
@@ -1004,7 +1026,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void addMouseWheelListener(java.awt.event.MouseWheelListener listener) {
-        if(listener != null && !mouseMouseWheelListeners.contains(listener)){
+        if(listener != null && mouseMouseWheelListeners != null && !mouseMouseWheelListeners.contains(listener)){
             mouseMouseWheelListeners.add(listener);
         }
     }
@@ -1015,7 +1037,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void removeMouseWheelListener(java.awt.event.MouseWheelListener listener) {
-        if(listener != null && mouseMouseWheelListeners.contains(listener)){
+        if(listener != null && mouseMouseWheelListeners != null && mouseMouseWheelListeners.contains(listener)){
             mouseMouseWheelListeners.remove(listener);
         }
     }
@@ -1026,11 +1048,13 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized java.awt.event.MouseWheelListener[] getMouseWheelListeners() {
-        java.awt.event.MouseWheelListener[] mouse = new java.awt.event.MouseWheelListener[mouseMouseWheelListeners.size()];
-        for(int i=0;i<mouse.length;i++){
-            mouse[i] = mouseMouseWheelListeners.get(i);
-        }
-        return mouse;
+        if(mouseMouseWheelListeners != null){
+            java.awt.event.MouseWheelListener[] mouse = new java.awt.event.MouseWheelListener[mouseMouseWheelListeners.size()];
+            for(int i=0;i<mouse.length;i++){
+                mouse[i] = mouseMouseWheelListeners.get(i);
+            }
+            return mouse;
+        }else return new java.awt.event.MouseWheelListener[0];
     }
 
     /**
@@ -1039,7 +1063,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void addPropertyChangeListener(java.beans.PropertyChangeListener listener) {
-        if(listener != null && !propertyChangeListeners.contains(listener)){
+        if(listener != null && propertyChangeListeners != null && !propertyChangeListeners.contains(listener)){
             propertyChangeListeners.add(listener);
         }
     }
@@ -1050,7 +1074,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void removePropertyChangeListener(java.beans.PropertyChangeListener listener) {
-        if(listener != null && propertyChangeListeners.contains(listener)){
+        if(listener != null && propertyChangeListeners != null && propertyChangeListeners.contains(listener)){
             propertyChangeListeners.remove(listener);
         }
     }
@@ -1061,11 +1085,13 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized java.beans.PropertyChangeListener[] getPropertyChangeListeners() {
-        java.beans.PropertyChangeListener[] property = new java.beans.PropertyChangeListener[propertyChangeListeners.size()];
-        for(int i=0;i<property.length;i++){
-            property[i] = propertyChangeListeners.get(i);
-        }
-        return property;
+        if(propertyChangeListeners != null){
+            java.beans.PropertyChangeListener[] property = new java.beans.PropertyChangeListener[propertyChangeListeners.size()];
+            for(int i=0;i<property.length;i++){
+                property[i] = propertyChangeListeners.get(i);
+            }
+            return property;
+        }else return new java.beans.PropertyChangeListener[0];
     }
 
     /**
@@ -1074,7 +1100,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void addVetoableChangeListener(java.beans.VetoableChangeListener listener) {
-        if(listener != null && !vetoableChangeListeners.contains(listener)){
+        if(listener != null && vetoableChangeListeners != null && !vetoableChangeListeners.contains(listener)){
             vetoableChangeListeners.add(listener);
         }
     }
@@ -1085,7 +1111,7 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized void removeVetoableChangeListener(java.beans.VetoableChangeListener listener) {
-        if(listener != null && vetoableChangeListeners.contains(listener)){
+        if(listener != null && vetoableChangeListeners != null && vetoableChangeListeners.contains(listener)){
             vetoableChangeListeners.remove(listener);
         }
     }
@@ -1096,11 +1122,13 @@ public class JIP extends javax.swing.JPanel {
      */
     @Override
     public synchronized java.beans.VetoableChangeListener[] getVetoableChangeListeners() {
-        java.beans.VetoableChangeListener[] veto = new java.beans.VetoableChangeListener[vetoableChangeListeners.size()];
-        for(int i=0;i<veto.length;i++){
-            veto[i] = vetoableChangeListeners.get(i);
-        }
-        return veto;
+        if(vetoableChangeListeners != null){
+            java.beans.VetoableChangeListener[] veto = new java.beans.VetoableChangeListener[vetoableChangeListeners.size()];
+            for(int i=0;i<veto.length;i++){
+                veto[i] = vetoableChangeListeners.get(i);
+            }
+            return veto;
+        }else return new java.beans.VetoableChangeListener[0];
     }
     
     
