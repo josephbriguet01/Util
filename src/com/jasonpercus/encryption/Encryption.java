@@ -35,6 +35,12 @@ public abstract class Encryption {
     
 //METHODES PUBLICS
     /**
+     * Détermine quel est le type de dé/chiffrement (symétrique, asymétrique ou ne contient aucune clef)
+     * @return Retourne le type de dé/chiffrement
+     */
+    public abstract Type getType();
+    
+    /**
      * Chiffre les données
      * @param datas Correspond aux données à chiffrer
      * @return Retourne les données chiffrées

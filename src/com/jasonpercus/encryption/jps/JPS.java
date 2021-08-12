@@ -12,6 +12,7 @@ package com.jasonpercus.encryption.jps;
 
 import com.jasonpercus.encryption.Cipher;
 import com.jasonpercus.encryption.Key;
+import com.jasonpercus.encryption.Type;
 import com.jasonpercus.encryption.exception.InvalidKeyJPS;
 
 
@@ -81,6 +82,15 @@ public class JPS extends Cipher {
     
     
 //METHODES PUBLICS
+    /**
+     * Renvoie le type {@link Type#SYMMETRIC}
+     * @return Retourne le type {@link Type#SYMMETRIC}
+     */
+    @Override
+    public Type getType() {
+        return Type.SYMMETRIC;
+    }
+    
     /**
      * Génère une clef aléatoire
      * @return Retourne une clef aléatoire générée

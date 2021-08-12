@@ -12,6 +12,7 @@ package com.jasonpercus.encryption.aes;
 
 import com.jasonpercus.encryption.Cipher;
 import com.jasonpercus.encryption.Key;
+import com.jasonpercus.encryption.Type;
 import com.jasonpercus.encryption.base64.Base64;
 import com.jasonpercus.encryption.exception.KeySizeException;
 import com.jasonpercus.encryption.exception.KeySizeTooLongException;
@@ -56,6 +57,15 @@ public class AES extends Cipher {
     
     
 //METHODES PUBLICS
+    /**
+     * Renvoie le type {@link Type#SYMMETRIC}
+     * @return Retourne le type {@link Type#SYMMETRIC}
+     */
+    @Override
+    public Type getType() {
+        return Type.SYMMETRIC;
+    }
+    
     /**
      * Génère une clef AES de longueur KEY_SIZE_MIN
      * @return Retourne une clef générée

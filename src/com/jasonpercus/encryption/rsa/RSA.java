@@ -12,6 +12,7 @@ package com.jasonpercus.encryption.rsa;
 
 import com.jasonpercus.encryption.Cipher;
 import com.jasonpercus.encryption.Key;
+import com.jasonpercus.encryption.Type;
 import com.jasonpercus.encryption.base64.Base64;
 import com.jasonpercus.encryption.exception.KeySizeTooLongException;
 import com.jasonpercus.encryption.exception.KeySizeTooSmallException;
@@ -71,6 +72,15 @@ public class RSA extends Cipher {
     
     
 //METHODES PUBLICS
+    /**
+     * Renvoie le type {@link Type#ASYMMETRIC}
+     * @return Retourne le type {@link Type#ASYMMETRIC}
+     */
+    @Override
+    public Type getType() {
+        return Type.ASYMMETRIC;
+    }
+    
     /**
      * Génère une clef
      * @see #generatePublicKey() 

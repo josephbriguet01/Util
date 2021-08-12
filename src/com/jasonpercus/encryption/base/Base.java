@@ -9,6 +9,7 @@ package com.jasonpercus.encryption.base;
 
 import com.jasonpercus.encryption.exception.BaseException;
 import com.jasonpercus.encryption.Encryption;
+import com.jasonpercus.encryption.Type;
 
 
 
@@ -137,6 +138,15 @@ public class Base extends Encryption implements Comparable<Base> {
     
     
 //METHODES PUBLICS
+    /**
+     * Renvoie le type {@link Type#NO_KEY}
+     * @return Retourne le type {@link Type#NO_KEY}
+     */
+    @Override
+    public Type getType() {
+        return Type.NO_KEY;
+    }
+    
     /**
      * Encode un tableau de bytes (base 256 car un byte contient 256 valeur possibles) en base n (n étant la valeur fournit au constructeur)
      * @param datas Correspond au tableau de bytes à encoder
