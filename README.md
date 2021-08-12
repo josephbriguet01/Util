@@ -1050,6 +1050,71 @@ Voici un tableau récapitulatif du fonctionnement des classes et interfaces prin
 | OnCodeProcess  | interface | Cette interface permet d'être au courant de chaque changement d'état d'un objet CodeProcessing                         |
 | TimedResult    |   class   | Execute un bout de code en un temps imparti. Si celui-ci dépasse le temps indiqué une valeur par défaut est envoyée    |
 | CodeTimeResult | interface | Cette interface permet de définir le bout de code a être réalisé en un temps imparti. Elle est couplé avec TimedResult |
+| ThreadPool     |   class   | Voir section 11.1 pour plus d'informations                                                                             |
+
+   ## 11.1. ThreadPool
+Cette classe permet de lancer plusieurs actions sur un pool de threads. Lorsqu'un thread est disponible, il se charge d'exécuter une tâche contenu dans la file d'attente des actions à exécuter. Une fois que le thread a terminé sa tâche il en prend une nouvelle et ainsi de suite. Si le pool contient n threads, alors ces threads vont se répartir la charge des tâches à réaliser.
+
+```java
+//Crée un pool de 4 threads
+ThreadPool pool = new ThreadPool(4);
+
+//Ajoute une tâche a exécuter. Elle sera prise dès que possible par l'un des 4 threads du pool
+pool.execute(new Runnable(){...});
+
+//Ajoute encore une tâche a exécuter. Elle sera prise dès que possible par l'un des 4 threads du pool. 
+//Et ainsi de suite...
+pool.execute(new Runnable(){...});
+
+//Ferme le pool. Si des tâches sont en cours, alors le système attend que les tâches sont terminées. 
+//En revanche les tâches qui n'ont pas encore été exécutés ne seront pas lancé
+pool.close();
+
+//Ferme le pool de force. Si des tâches sont en cours, celle-ci seront fermée de force.
+pool.closeNow();
+```
+
+##### Monitor
+Il est possible de joindre un objet ```Monitor``` à un pool. Cela permet entre autre d'être mis au courant des changements d'état des threads ainsi que des tâches en cours à tout moment.
+
+```java
+ThreadPool.Monitor monitor = new ThreadPool.Monitor(){
+    
+    public void started(){
+        //Lorsque le pool démarre (Remarque: une première tâche doit être donnée pour lancer le pool)
+    }
+    
+    public void update(Runnable runnable, 
+                        StatusThread status, 
+                        int poolSize, 
+                        int corePoolSize, 
+                        int activeCount, 
+                        long completedTaskCount, 
+                        long taskCount){
+        //Est appelée a chaque changement d'état d'un thread
+        
+        //Si la tâche runnable vient d'être prise en charge par un thread du pool
+        if(status == ThreadPool.StatusThread.Playing){
+            
+        }
+        
+        //Si la tâche runnable est terminée. Le thread qui l'exécutait va pouvoir prendre une nouvelle tâche
+        if(status == ThreadPool.StatusThread.STOPPED){
+            
+        }
+    }
+    
+    public void stopped(){
+        //Lorsque le pool est arrêté
+    }
+    
+};
+```
+
+Pour attribuer un ```Monitor``` à un ```ThreadPool```:
+```java
+pool.setMonitor(monitor);
+```
 
 # 12. **File**
 Cette classe étend l'ancienne classe ```java.io.File```. Elle apporte quelques méthodes pratiques qui n'existaient pas dans l'ancienne classe. Exemple:
@@ -1308,7 +1373,129 @@ Object[] obj = lp.getObject(Personnage.class, Vehicule.class);
 
 > Conclusion: Pour créer un plugin, il faut penser avant tout à bien fournir l'interface ou classe de référence du projet principale pour que les plugins puissent avoir un réel potentiel.
 
-# 14. **OS**
+# 14. **Locker**
+Cette classe permet de bloquer un bout de code. Par exemple il peut servir à attendre un résultat avant de reprendre l'exécution du programme.
+
+```java
+//Imaginons que l'on veut exécuter une addition par un thread et récupérer le résultat après l'exécution du thread
+
+//Création des valeurs à additionner
+int a = 15;
+int b = 37;
+
+//Crée un objet Runnable
+RunnableWithResult runnable = new RunnableWithResult(a, b){
+    
+    public void run(){
+        //Récupère les paramètres a et b
+        int a = (int) getParams()[0];
+        int b = (int) getParams()[1];
+        
+        //Additionne les 2 nombres
+        int c = a + b;
+        
+        //Renvoie le résultat
+        returnResult(c);
+    }
+    
+};
+
+//Crée et exécute le thread
+new Thread(runnable).start();
+
+//Imaginons que nous avons ici un mécanisme qui attend que le thread se termine avant de récupérer le résultat
+>...wait...<
+
+//Récupère le résultat de l'exécution du thread. Evidemment il faut attendre que celui-ci soit terminé
+int result = (int) runnable.getResult();
+
+//Affiche le résultat
+System.out.println(String.format("Résultat: %d + %d = %d", a, b, result)); //Résulat 15 + 37 = 52
+```
+
+> Comment faire pour que l'instruction >...wait...< attende la fin de l'exécution du thread avant de passer à la récupération du résultat ?
+
+C'est tout simple il suffit d'utiliser un objet ```Locker```. Il existe 2 façons d'utiliser un Locker:
+ * Par un objet ```Locker``` dédié
+ * Par une chaîne de caractère qui servira d'id
+ 
+### Locker dédié
+```java
+//On crée un locker
+Locker locker = new Locker();
+```
+Il suffit de remplacer ```>...wait...<``` (l'exemple précédemment utilisé) par:
+```java
+//Bloque l'exécution du programme. 
+//Ainsi le thread restera sur cette instruction jusqu'à ce que locker soit débloqué
+locker.lock();
+```
+Pour débloquer le ```Locker``` dans notre exemple, il nous faut le résultat de l'addition:
+```java
+//Crée un objet Runnable
+RunnableWithResult runnable = new RunnableWithResult(a, b){
+    
+    public void run(){
+        //Récupère les paramètres a et b
+        int a = (int) getParams()[0];
+        int b = (int) getParams()[1];
+        
+        //Additionne les 2 nombres
+        int c = a + b;
+        
+        //Renvoie le résultat
+        returnResult(c);
+        
+        //Comme nous possédons notre résultat, alors on débloque le Locker
+        locker.unlock();
+    }
+    
+};
+```
+
+### Par un ID
+C'est presque plus simple d'utiliser un ```Locker``` par son ID. Il suffit d'utiliser la méthode ```Locker.createAndLock([id])``` à la place de ```locker.lock()```. Ainsi il n'y a pas besoin de créer de locker, car la méthode se charge de créer un ```Locker``` pour cet ID. De même qu'il suffit d'utiliser la méthode ```Locker.unlockAndDestroy([id])``` à la place de ```locker.unlock()```. Voici à quoi ressemblerait l'exmple une fois modifié:
+```java
+//Imaginons que l'on veut exécuter une addition par un thread et récupérer le résultat après l'exécution du thread
+
+//Création des valeurs à additionner
+int a = 15;
+int b = 37;
+
+//Crée un objet Runnable
+RunnableWithResult runnable = new RunnableWithResult(a, b){
+    
+    public void run(){
+        //Récupère les paramètres a et b
+        int a = (int) getParams()[0];
+        int b = (int) getParams()[1];
+        
+        //Additionne les 2 nombres
+        int c = a + b;
+        
+        //Renvoie le résultat
+        returnResult(c);
+        
+        //Débloque la méthode createAndLock("MonID")
+        Locker.unlockAndDestroy("MonID");
+    }
+    
+};
+
+//Crée et exécute le thread
+new Thread(runnable).start();
+
+//On attend le résultat de l'opération
+Locker.createAndLock("MonID");
+
+//Récupère le résultat de l'exécution du thread. Evidemment il faut attendre que celui-ci soit terminé
+int result = (int) runnable.getResult();
+
+//Affiche le résultat
+System.out.println(String.format("Résultat: %d + %d = %d", a, b, result)); //Résulat 15 + 37 = 52
+```
+
+# 15. **OS**
 Cette classe permet de déterminer le système d'exploitation où le programme est exécuté. Voici un exemple:
 ```java
 //Affiche si le système qui exécute le programme est un système Windows 10
@@ -1320,7 +1507,7 @@ System.out.println(OS.IS_LINUX); //false
 //...
 ```
 
-# 15. **OTC**
+# 16. **OTC**
 Il arrive parfois utile de déterminer le temps que met un bout de code à s'exécuter. C'est possible grâce à la classe ```OTC```. Il existe deux manières pour celà.
 ### Premier exemple
 ```java
@@ -1351,7 +1538,50 @@ long duree = OTC.stop("IdUnique");
 System.out.println("Le code a mis " + duree + " millisecondes à s'exécuter !"); //Le code a mis 3 millisecondes à s'exécuter !
 ```
 
-# 16. **Serializer**
+# 17. **RunnableWithResult**
+Cette classe abstraite est une interface ```Runnable``` classique. Elle ajoute cependant deux fonctionnalitées qui peuvent s'avérer pratiques.
+ * Transmettre des paramètres, de manière à ce que la méthode ```run()``` puisse y accéder
+ * Faire retourner un résultat à la méthode ```run()``` grâce à la méthode ```returnResult(Object result)``` qui bien sûr doit être utilisé en toute fin de la méthode ```run()```
+
+Voici un exemple simplifié:
+```java
+//Imaginons que l'on veut exécuter une addition par un thread et récupérer le résultat après l'exécution du thread
+
+//Création des valeurs à additionner
+int a = 15;
+int b = 37;
+
+//Crée un objet Runnable
+RunnableWithResult runnable = new RunnableWithResult(a, b){
+    
+    public void run(){
+        //Récupère les paramètres a et b
+        int a = (int) getParams()[0];
+        int b = (int) getParams()[1];
+        
+        //Additionne les 2 nombres
+        int c = a + b;
+        
+        //Renvoie le résultat
+        returnResult(c);
+    }
+    
+};
+
+//Crée et exécute le thread
+new Thread(runnable).start();
+
+//Imaginons que nous avons ici un mécanisme qui attend que le thread se termine avant de récupérer le résultat
+...wait...
+
+//Récupère le résultat de l'exécution du thread. Evidemment il faut attendre que celui-ci soit terminé
+int result = (int) runnable.getResult();
+
+//Affiche le résultat
+System.out.println(String.format("Résultat: %d + %d = %d", a, b, result)); //Résulat 15 + 37 = 52
+```
+
+# 18. **Serializer**
 La classe ```Serializer``` permet de transformer un objet ```Serializable``` en tableau de byte[] et inversement. Voici un exemple:
 ```java
 //Crée un objet
@@ -1364,7 +1594,7 @@ byte[] datas = Serializer.getData(personne);
 Personnage personneDeserialisée = (Personnage) Serializer.getObject(datas);
 ```
 
-# 17. **Strings**
+# 19. **Strings**
 La classe ```Strings``` apporte quelques méthodes utiles permettant de manipuler des chaînes de caractères. Voici un exemple:
 ```java
 //Génère une chaîne de caractères avec seulement des caractères numériques
@@ -1379,7 +1609,7 @@ str = Strings.generateLower(20);
 //Affiche la chaîne générée
 System.out.println(str); //ljjiqwtoygxysgmrujkg
 ```
-# 18. **WinUser**
+# 20. **WinUser**
 > Attention : la classe ```WinUser``` ne fonctionne que sur les systèmes windows
 
 La classe ```WinUser``` permet de manipuler des fenêtres autres que java, obtenir des informations d'affichages, des informations systèmes (comme le nombre de bouton contenu sur la souris)... Voici un exemple ultra simplifié de ce que la classe peut faire:
@@ -1396,10 +1626,10 @@ for(WinUser.Window fenêtre : fenêtres)
 
 > Pour plus d'information, veuillez consulter la javadoc de cette classe
 
-# 19. **Utilisation de la librairie**
+# 21. **Utilisation de la librairie**
 La librairie ```Util-*.*.jar``` fait référence à plusieurs autres projets (cf: Introduction). Ces sous projets sont contenus dans le fichier. En revanche le fichier ```Util-*.*-without-dependencies.jar``` ne les contient pas. Pensez donc à les ajouter dans le classpath si vous utilisez cette version.
 
-# 20. **Licence**
+# 22. **Licence**
 Le projet est sous licence "GNU General Public License v3.0"
 
 ## Accès au projet GitHub => [ici](https://github.com/josephbriguet01/Util "Accès au projet Git Util")
