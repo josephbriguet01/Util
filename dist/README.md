@@ -940,8 +940,20 @@ Cette classe représente un ```java.awt.Graphics``` invisible qui servira comme 
 
 > Pour plus de précision lire la javadoc associée avec cette classe
 
-# 10. **Process**
-   ## 10.1. Process OS
+# 10. **NumberConverter**
+Cette classe permet de convertir des nombres entiers en un tableau de bytes et vice-versa. Exemple:
+```java
+//Conversion d'un entier en un tableau de byte[]
+int i = 15;
+byte[] array = NumberConverter.intTobytes(i);
+
+//Conversion d'un tableau de byte[] en un entier
+int j = NumberConverter.bytesToInt(array);
+```
+> Bien sûr, il est possible de réaliser les mêmes opérations avec des ```long``` et des ```short```.
+
+# 11. **Process**
+   ## 11.1. Process OS
 La classe ```com.jasonpercus.util.process.Process``` représente la même chose qu'un objet ```java.lang.Process``` avec en plus la possibilité d'obtenir le pid du processus, de le tuer. Voici un exemple d'utilisation:
 ```java
 Process process = new Process("Outlook.exe", "/safe");
@@ -968,7 +980,7 @@ process.start(new IProcessListener() {
 process.kill();
 ```
 
-   ## 10.2. Process java
+   ## 11.2. Process java
 Ce projet permet de lancer un processus Java à partir du processus courant et de communiquer avec lui tout le long du cycle de vie d'un des deux processus. Le lancement et la communication se fait avec l'aide de la classe ```InterPipe```. Voici un exemple simplifié d'utilisation:
 ##### Pour le processus père
 ```java
@@ -1039,7 +1051,7 @@ System.err.println("Je bug encore !");
 System.out.println(InterPipe.getSync("Quelle heure est-il ?", false)); //Il est 16:57
 ```
 
-# 11. **Thread**
+# 12. **Thread**
 ***Cette section n'est pas détaillée pour le moment. Veuillez consulter la javadoc qui explique comment utiliser les différentes classes et interface***
 Voici un tableau récapitulatif du fonctionnement des classes et interfaces principales:
 
@@ -1052,7 +1064,7 @@ Voici un tableau récapitulatif du fonctionnement des classes et interfaces prin
 | CodeTimeResult | interface | Cette interface permet de définir le bout de code a être réalisé en un temps imparti. Elle est couplé avec TimedResult |
 | ThreadPool     |   class   | Voir section 11.1 pour plus d'informations                                                                             |
 
-   ## 11.1. ThreadPool
+   ## 12.1. ThreadPool
 Cette classe permet de lancer plusieurs actions sur un pool de threads. Lorsqu'un thread est disponible, il se charge d'exécuter une tâche contenu dans la file d'attente des actions à exécuter. Une fois que le thread a terminé sa tâche il en prend une nouvelle et ainsi de suite. Si le pool contient n threads, alors ces threads vont se répartir la charge des tâches à réaliser.
 
 ```java
@@ -1116,7 +1128,7 @@ Pour attribuer un ```Monitor``` à un ```ThreadPool```:
 pool.setMonitor(monitor);
 ```
 
-# 12. **File**
+# 13. **File**
 Cette classe étend l'ancienne classe ```java.io.File```. Elle apporte quelques méthodes pratiques qui n'existaient pas dans l'ancienne classe. Exemple:
 ```java
 //Crée un fichier
@@ -1131,7 +1143,7 @@ System.out.println(file.getExtension()); //txt
 //...
 ```
 
-# 13. **LoaderPlugin**
+# 14. **LoaderPlugin**
 Cette classe permet de charger des plugins dans un programme. Un plugin est représenté et compilé en fichiers `jar`. Mais il peut être renommé avec une autre extension si on ne veut pas l'associer à Java *(voir l'exemple plus bas)*. Pour pouvoir rendre un plugin fonctionnel, il faut comprendre le principe d'un plugin. 
 
 Tout d'abord on ne connait pas les classes du plugin. C'est embêtant, car on ne peut pas créer d'objet si on ne connait pas les classes du plugin. C'est pourquoi on fait en sorte que les classes des plugins implémentent une interface du projet ou qu'elles étendent une classe bien connue du projet. Ainsi ces interfaces ou classes font le lien entre le projet et le plugin.
@@ -1373,7 +1385,7 @@ Object[] obj = lp.getObject(Personnage.class, Vehicule.class);
 
 > Conclusion: Pour créer un plugin, il faut penser avant tout à bien fournir l'interface ou classe de référence du projet principale pour que les plugins puissent avoir un réel potentiel.
 
-# 14. **Locker**
+# 15. **Locker**
 Cette classe permet de bloquer un bout de code. Par exemple il peut servir à attendre un résultat avant de reprendre l'exécution du programme.
 
 ```java
@@ -1495,7 +1507,7 @@ int result = (int) runnable.getResult();
 System.out.println(String.format("Résultat: %d + %d = %d", a, b, result)); //Résulat 15 + 37 = 52
 ```
 
-# 15. **OS**
+# 16. **OS**
 Cette classe permet de déterminer le système d'exploitation où le programme est exécuté. Voici un exemple:
 ```java
 //Affiche si le système qui exécute le programme est un système Windows 10
@@ -1507,7 +1519,7 @@ System.out.println(OS.IS_LINUX); //false
 //...
 ```
 
-# 16. **OTC**
+# 17. **OTC**
 Il arrive parfois utile de déterminer le temps que met un bout de code à s'exécuter. C'est possible grâce à la classe ```OTC```. Il existe deux manières pour celà.
 ### Premier exemple
 ```java
@@ -1538,7 +1550,7 @@ long duree = OTC.stop("IdUnique");
 System.out.println("Le code a mis " + duree + " millisecondes à s'exécuter !"); //Le code a mis 3 millisecondes à s'exécuter !
 ```
 
-# 17. **RunnableWithResult**
+# 18. **RunnableWithResult**
 Cette classe abstraite est une interface ```Runnable``` classique. Elle ajoute cependant deux fonctionnalitées qui peuvent s'avérer pratiques.
  * Transmettre des paramètres, de manière à ce que la méthode ```run()``` puisse y accéder
  * Faire retourner un résultat à la méthode ```run()``` grâce à la méthode ```returnResult(Object result)``` qui bien sûr doit être utilisé en toute fin de la méthode ```run()```
@@ -1581,7 +1593,7 @@ int result = (int) runnable.getResult();
 System.out.println(String.format("Résultat: %d + %d = %d", a, b, result)); //Résulat 15 + 37 = 52
 ```
 
-# 18. **Serializer**
+# 19. **Serializer**
 La classe ```Serializer``` permet de transformer un objet ```Serializable``` en tableau de byte[] et inversement. Voici un exemple:
 ```java
 //Crée un objet
@@ -1594,7 +1606,7 @@ byte[] datas = Serializer.getData(personne);
 Personnage personneDeserialisée = (Personnage) Serializer.getObject(datas);
 ```
 
-# 19. **Strings**
+# 20. **Strings**
 La classe ```Strings``` apporte quelques méthodes utiles permettant de manipuler des chaînes de caractères. Voici un exemple:
 ```java
 //Génère une chaîne de caractères avec seulement des caractères numériques
@@ -1609,7 +1621,7 @@ str = Strings.generateLower(20);
 //Affiche la chaîne générée
 System.out.println(str); //ljjiqwtoygxysgmrujkg
 ```
-# 20. **WinUser**
+# 21. **WinUser**
 > Attention : la classe ```WinUser``` ne fonctionne que sur les systèmes windows
 
 La classe ```WinUser``` permet de manipuler des fenêtres autres que java, obtenir des informations d'affichages, des informations systèmes (comme le nombre de bouton contenu sur la souris)... Voici un exemple ultra simplifié de ce que la classe peut faire:
@@ -1626,10 +1638,10 @@ for(WinUser.Window fenêtre : fenêtres)
 
 > Pour plus d'information, veuillez consulter la javadoc de cette classe
 
-# 21. **Utilisation de la librairie**
+# 22. **Utilisation de la librairie**
 La librairie ```Util-*.*.jar``` fait référence à plusieurs autres projets (cf: Introduction). Ces sous projets sont contenus dans le fichier. En revanche le fichier ```Util-*.*-without-dependencies.jar``` ne les contient pas. Pensez donc à les ajouter dans le classpath si vous utilisez cette version.
 
-# 22. **Licence**
+# 23. **Licence**
 Le projet est sous licence "GNU General Public License v3.0"
 
 ## Accès au projet GitHub => [ici](https://github.com/josephbriguet01/Util "Accès au projet Git Util")
