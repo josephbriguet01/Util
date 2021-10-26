@@ -62,6 +62,7 @@ public class QueryResult {
             }
             table.add(line);
         }
+        rs.close();
     }
     
     
