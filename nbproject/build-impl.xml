@@ -1028,8 +1028,50 @@ is divided into following sections:
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
     </target>
-    <target depends="init,compile,-pre-jar,-do-jar-without-libraries,-do-jar-with-libraries,-post-jar" name="-do-jar"/>
-    <target depends="init,compile,-pre-jar,-do-jar,-post-jar" description="Build JAR." name="jar"/>
+    <target depends="init,compile,-pre-jar,-do-jar-without-libraries,-do-jar-with-libraries,-post-jar" name="-do-jar">
+        <loadfile property="version.code" srcFile="version.txt"/>
+        <property name="store.jar.name" value="${application.title}-${version.code}"/>
+        <property name="store.jar" value="${dist.dir}/${store.jar.name}.jar"/>
+        <echo message="Packaging ${application.title} into a single JAR at ${store.jar}"/>
+        <jar destfile="${dist.dir}/temp_final.jar" filesetmanifest="skip">
+            <zipgroupfileset dir="dist" includes="*.jar"/>
+            <zipgroupfileset dir="lib" includes="*.jar"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+        <zip destfile="${dist.dir}/${application.title}-${version.code}.jar">
+            <zipfileset src="${dist.dir}/temp_final.jar"
+            excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA"/>
+        </zip>
+        <delete file="${dist.dir}/temp_final.jar"/>
+        <move file="${dist.dir}/${application.title}.jar" tofile="${dist.dir}/${application.title}-${version.code}-without-dependencies.jar"/>
+        <copy todir="${dist.dir}">
+            <fileset dir="lib">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+        <copy file="README.md" todir="${dist.dir}"/>
+    </target>
+    <target depends="init" description="Build JAR." name="jar">
+        <antcall target="compile"/>
+        <antcall target="-pre-jar"/>
+        <antcall target="-do-jar"/>
+        <antcall target="-post-jar"/>
+        <antcall target="javadoc"/>
+        
+        <property name="javadoc.index.html" location="${dist.javadoc.dir}/index.html"/>
+        <loadfile property="favicon.txt" srcFile="nbproject/favicon.txt"/>
+        <loadfile property="version.code" srcFile="version.txt"/>
+        <copy file="nbproject/favicon.ico" tofile="${dist.javadoc.dir}/favicon.ico"/>
+        <replaceregexp file="${javadoc.index.html}" match="\&lt;title\&gt;.*\&lt;\/title\&gt;" replace="\&lt;title\&gt;${application.title} ${version.code}\&lt;\/title\&gt;${favicon.txt}" flags="g" byline="true"/>
+        <zip destfile="${dist.javadoc.dir}.zip" basedir="${dist.javadoc.dir}"/>
+        <delete dir="${dist.javadoc.dir}"/>
+        <move file="${dist.dir}/javadoc.zip" tofile="${dist.dir}/${application.title}-${version.code}-javadoc.zip"/>
+        
+        <delete dir="build"/>
+        <delete dir="test"/>
+    </target>
     <!--
                 =================
                 EXECUTION SECTION
@@ -1236,7 +1278,7 @@ is divided into following sections:
     <target depends="init,-javadoc-build" if="netbeans.home" name="-javadoc-browse" unless="no.javadoc.preview">
         <nbbrowse file="${dist.javadoc.dir}/index.html"/>
     </target>
-    <target depends="init,-javadoc-build,-javadoc-browse" description="Build Javadoc." name="javadoc"/>
+    <target depends="init,-javadoc-build" description="Build Javadoc." name="javadoc"/>
     <!--
                 =========================
                 TEST COMPILATION SECTION
