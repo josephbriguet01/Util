@@ -1638,10 +1638,24 @@ for(WinUser.Window fenêtre : fenêtres)
 
 > Pour plus d'information, veuillez consulter la javadoc de cette classe
 
-# 22. **Utilisation de la librairie**
+# 22. **WinBatteryInfo**
+> Attention : la classe ```WinBatteryInfo``` ne fonctionne que sur les systèmes windows
+
+La classe ```WinBatteryInfo``` permet de récupérer l'état de la batterie du système windows... Voici un exemple ultra simplifié de ce que la classe peut faire:
+```java
+//Récupère les infos de la batterie
+WinBatteryInfo infos = WinBatteryInfo.get();
+
+//Affiche les infos de la batterie
+System.out.println(infos);
+```
+
+> Pour plus d'information, veuillez consulter la javadoc de cette classe
+
+# 23. **Utilisation de la librairie**
 La librairie ```Util-*.*.jar``` fait référence à plusieurs autres projets (cf: Introduction). Ces sous projets sont contenus dans le fichier. En revanche le fichier ```Util-*.*-without-dependencies.jar``` ne les contient pas. Pensez donc à les ajouter dans le classpath si vous utilisez cette version.
 
-# 23. **Licence**
+# 24. **Licence**
 Le projet est sous licence "GNU General Public License v3.0"
 
 ## Accès au projet GitHub => [ici](https://github.com/josephbriguet01/Util "Accès au projet Git Util")
