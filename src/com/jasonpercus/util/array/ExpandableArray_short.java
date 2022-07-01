@@ -375,7 +375,7 @@ class ExpandableArrayIterator_short<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings("UnnecessaryBoxing")
-        E e = (E) new Short(array.get(position));
+        E e = (E) Short.valueOf(array.get(position));
         position++;
         return e;
     }

@@ -375,7 +375,7 @@ class ExpandableArrayIterator_char<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings("UnnecessaryBoxing")
-        E e = (E) new Character(array.get(position));
+        E e = (E) Character.valueOf(array.get(position));
         position++;
         return e;
     }

@@ -375,7 +375,7 @@ class ExpandableArrayIterator_float<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings("UnnecessaryBoxing")
-        E e = (E) new Float(array.get(position));
+        E e = (E) Float.valueOf(array.get(position));
         position++;
         return e;
     }

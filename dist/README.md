@@ -1,13 +1,14 @@
 ﻿Copyright © JasonPercus Systems, Inc - All Rights Reserved
 # **Introduction**
 
-Cette librairie apporte une multitude de fonctions utiles permettant tout et n’importe quoi. Vous souhaitez faire des requêtes vers une base MySQL ? Dé/Chiffrer du texte ? Ou encore connaitre le nom des cartes réseaux d’un PC ? Alors cette librairie est faite pour vous. De plus elle intègre en son sein 5 projets connues. À savoir :
+Cette librairie apporte une multitude de fonctions utiles permettant tout et n’importe quoi. Vous souhaitez faire des requêtes vers une base MySQL ? Dé/Chiffrer du texte ? Ou encore connaitre le nom des cartes réseaux d’un PC ? Alors cette librairie est faite pour vous. De plus elle intègre en son sein 6 projets connues. À savoir :
 
 - gson-2.8.2
 - javaparser-core-3.22.1
 - mysql-connector-java-5.1.23-bin
 - jna-5.6.0
 - jna-platform-5.6.0
+- flatlaf-2.2
 
 D’ailleurs les projets ci-dessus sont notamment très utilisés par les diverses classes du projet Util.
 

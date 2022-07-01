@@ -226,46 +226,101 @@ public class QueryResult {
     
     
 //METHODES SQL java.sql.ResultSet
+    /**
+     * Renvoie une référence à un tableau sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une référence à un tableau sql
+     */
     public java.sql.Array getArray(String columnLabel){
         return (java.sql.Array) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une référence à un tableau sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une référence à un tableau sql
+     */
     public java.sql.Array getArray(int columnIndex){
         return (java.sql.Array) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un flux de caractères ASCII
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un flux de caractères ASCII
+     */
     public java.io.InputStream getAsciiStream(String columnLabel){
         return (java.io.InputStream) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un flux de caractères ASCII
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un flux de caractères ASCII
+     */
     public java.io.InputStream getAsciiStream(int columnIndex){
         return (java.io.InputStream) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un grand nombre
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un grand nombre
+     */
     public java.math.BigDecimal getBigDecimal(String columnLabel){
         return (java.math.BigDecimal) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un grand nombre
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un grand nombre
+     */
     public java.math.BigDecimal getBigDecimal(int columnIndex){
         return (java.math.BigDecimal) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un flux binaire
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un flux binaire
+     */
     public java.io.InputStream getBinaryStream(String columnLabel){
         return (java.io.InputStream) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un flux binaire
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un flux binaire
+     */
     public java.io.InputStream getBinaryStream(int columnIndex){
         return (java.io.InputStream) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un blob sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un blob sql
+     */
     public java.sql.Blob getBlob(String columnLabel){
         return (java.sql.Blob) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un blob sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un blob sql
+     */
     public java.sql.Blob getBlob(int columnIndex){
         return (java.sql.Blob) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un boolean
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un boolean
+     */
     public boolean getBoolean(String columnLabel){
         Object o = table.get(getCursor())[searchIndexColumn(columnLabel)];
         if(o instanceof Boolean) return (boolean)o;
@@ -273,6 +328,11 @@ public class QueryResult {
         else return (((long)o) == 1);
     }
     
+    /**
+     * Renvoie un boolean
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un boolean
+     */
     public boolean getBoolean(int columnIndex){
         Object o = table.get(getCursor())[columnIndex-1];
         if(o instanceof Boolean) return (boolean)o;
@@ -280,170 +340,380 @@ public class QueryResult {
         else return (((long)o) == 1);
     }
     
+    /**
+     * Renvoie un byte
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un byte
+     */
     public byte getByte(String columnLabel){
         return (byte) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un byte
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un byte
+     */
     public byte getByte(int columnIndex){
         return (byte) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un tableau de bytes
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un tableau de bytes
+     */
     public byte[] getBytes(String columnLabel){
         return (byte[]) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un tableau de bytes
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un tableau de bytes
+     */
     public byte[] getBytes(int columnIndex){
         return (byte[]) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un flux de caractères
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un flux de caractères
+     */
     public java.io.Reader getCharacterStream(String columnLabel){
         return (java.io.Reader) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un flux de caractères
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un flux de caractères
+     */
     public java.io.Reader getCharacterStream(int columnIndex){
         return (java.io.Reader) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un clob sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un clob sql
+     */
     public java.sql.Clob getClob(String columnLabel){
         return (java.sql.Clob) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un clob sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un clob sql
+     */
     public java.sql.Clob getClob(int columnIndex){
         return (java.sql.Clob) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie une date sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une date sql
+     */
     public java.sql.Date getDate(String columnLabel){
         return (java.sql.Date) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une date sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une date sql
+     */
     public java.sql.Date getDate(int columnIndex){
         return (java.sql.Date) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un double
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un double
+     */
     public double getDouble(String columnLabel){
         return (double) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un double
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un double
+     */
     public double getDouble(int columnIndex){
         return (double) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un float
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un float
+     */
     public float getFloat(String columnLabel){
         return (float) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un float
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un float
+     */
     public float getFloat(int columnIndex){
         return (float) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un entier
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un entier
+     */
     public int getInt(String columnLabel){
         return (int) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un entier
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un entier
+     */
     public int getInt(int columnIndex){
         return (int) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un long
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un long
+     */
     public long getLong(String columnLabel){
         return (long) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un long
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un long
+     */
     public long getLong(int columnIndex){
         return (long) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un flux de caractères
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un flux de caractères
+     */
     public java.io.Reader getNCharacterStream(String columnLabel){
         return (java.io.Reader) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un flux de caractères
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un flux de caractères
+     */
     public java.io.Reader getNCharacterStream(int columnIndex){
         return (java.io.Reader) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un clob sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un clob sql
+     */
     public java.sql.NClob getNClob(String columnLabel){
         return (java.sql.NClob) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un clob sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un clob sql
+     */
     public java.sql.NClob getNClob(int columnIndex){
         return (java.sql.NClob) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie une chaine de caractères
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une chaine de caractères
+     */
     public String getNString(String columnLabel){
         return (String) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une chaine de caractères
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une chaine de caractères
+     */
     public String getNString(int columnIndex){
         return (String) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un objet
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un objet
+     */
     public Object getObject(String columnLabel){
         return table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un objet
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un objet
+     */
     public Object getObject(int columnIndex){
         return table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie une référence sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une référence sql
+     */
     public java.sql.Ref getRef(String columnLabel){
         return (java.sql.Ref) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une référence sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une référence sql
+     */
     public java.sql.Ref getRef(int columnIndex){
         return (java.sql.Ref) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un numéro d'id de ligne
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un numéro d'id de ligne
+     */
     public java.sql.RowId getRowId(String columnLabel){
         return (java.sql.RowId) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un numéro d'id de ligne
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un numéro d'id de ligne
+     */
     public java.sql.RowId getRowId(int columnIndex){
         return (java.sql.RowId) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un xml
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un xml
+     */
     public java.sql.SQLXML getSQLXML(String columnLabel){
         return (java.sql.SQLXML) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un xml
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un xml
+     */
     public java.sql.SQLXML getSQLXML(int columnIndex){
         return (java.sql.SQLXML) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie un short
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne un short
+     */
     public short getShort(String columnLabel){
         return (short) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie un short
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne un short
+     */
     public short getShort(int columnIndex){
         return (short) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie une chaîne de caractères
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une chaîne de caractères
+     */
     public String getString(String columnLabel){
         return (String) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une chaîne de caractères
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une chaîne de caractères
+     */
     public String getString(int columnIndex){
         return (String) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie une heure sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une heure sql
+     */
     public java.sql.Time getTime(String columnLabel){
         return (java.sql.Time) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une heure sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une heure sql
+     */
     public java.sql.Time getTime(int columnIndex){
         return (java.sql.Time) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie une date et une heure sql
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une date et une heure sql
+     */
     public java.sql.Timestamp getTimestamp(String columnLabel){
         return (java.sql.Timestamp) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une date et une heure sql
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une date et une heure sql
+     */
     public java.sql.Timestamp getTimestamp(int columnIndex){
         return (java.sql.Timestamp) table.get(getCursor())[columnIndex-1];
     }
     
+    /**
+     * Renvoie une url
+     * @param columnLabel Correspond au nom de la colonne sql visée
+     * @return Retourne une url
+     */
     public java.net.URL getURL(String columnLabel){
         return (java.net.URL) table.get(getCursor())[searchIndexColumn(columnLabel)];
     }
     
+    /**
+     * Renvoie une url
+     * @param columnIndex Correspond au numéro de la colonne sql visée
+     * @return Retourne une url
+     */
     public java.net.URL getURL(int columnIndex){
         return (java.net.URL) table.get(getCursor())[columnIndex-1];
     }

@@ -395,7 +395,7 @@ class ExpandableArrayIterator_boolean<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings({"UnnecessaryBoxing", "BooleanConstructorCall"})
-        E e = (E) new Boolean(array.get(position));
+        E e = (E) Boolean.valueOf(array.get(position));
         position++;
         return e;
     }

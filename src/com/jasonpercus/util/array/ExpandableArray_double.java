@@ -375,7 +375,7 @@ class ExpandableArrayIterator_double<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings("UnnecessaryBoxing")
-        E e = (E) new Double(array.get(position));
+        E e = (E) Double.valueOf(array.get(position));
         position++;
         return e;
     }

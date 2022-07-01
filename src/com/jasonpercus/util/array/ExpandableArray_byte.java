@@ -375,7 +375,7 @@ class ExpandableArrayIterator_byte<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings("UnnecessaryBoxing")
-        E e = (E) new Byte(array.get(position));
+        E e = (E) Byte.valueOf(array.get(position));
         position++;
         return e;
     }

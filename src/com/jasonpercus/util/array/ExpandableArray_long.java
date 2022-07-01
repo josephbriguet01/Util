@@ -375,7 +375,7 @@ class ExpandableArrayIterator_long<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings("UnnecessaryBoxing")
-        E e = (E) new Long(array.get(position));
+        E e = (E) Long.valueOf(array.get(position));
         position++;
         return e;
     }

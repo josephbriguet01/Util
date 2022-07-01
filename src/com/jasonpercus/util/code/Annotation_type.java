@@ -38,6 +38,10 @@ public class Annotation_type extends Type_code {
      * Détermine si l'interface d'annotation est final ou pas
      */
     private boolean _abstract;
+    
+    /**
+     * Correspond à la liste des membres d'annotations
+     */
     private final java.util.List<AnnotationMember_element> annotationMember;
     
     

@@ -375,7 +375,7 @@ class ExpandableArrayIterator_int<E> implements java.util.Iterator<E> {
     @Override
     public synchronized E next() {
         @SuppressWarnings("UnnecessaryBoxing")
-        E e = (E) new Integer(array.get(position));
+        E e = (E) Integer.valueOf(array.get(position));
         position++;
         return e;
     }
