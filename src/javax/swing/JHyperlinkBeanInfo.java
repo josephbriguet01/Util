@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, July 2022
+ * Written by JasonPercus, 07/2022
  */
 package javax.swing;
 
@@ -127,41 +127,40 @@ public class JHyperlinkBeanInfo extends SimpleBeanInfo {
     private static final int PROPERTY_paintingForPrint = 81;
     private static final int PROPERTY_paintingTile = 82;
     private static final int PROPERTY_parent = 83;
-    private static final int PROPERTY_peer = 84;
-    private static final int PROPERTY_preferredSize = 85;
-    private static final int PROPERTY_preferredSizeSet = 86;
-    private static final int PROPERTY_propertyChangeListeners = 87;
-    private static final int PROPERTY_registeredKeyStrokes = 88;
-    private static final int PROPERTY_replaceText = 89;
-    private static final int PROPERTY_requestFocusEnabled = 90;
-    private static final int PROPERTY_rootPane = 91;
-    private static final int PROPERTY_showing = 92;
-    private static final int PROPERTY_size = 93;
-    private static final int PROPERTY_text = 94;
-    private static final int PROPERTY_toolkit = 95;
-    private static final int PROPERTY_toolTipText = 96;
-    private static final int PROPERTY_topLevelAncestor = 97;
-    private static final int PROPERTY_transferHandler = 98;
-    private static final int PROPERTY_treeLock = 99;
-    private static final int PROPERTY_UI = 100;
-    private static final int PROPERTY_UIClassID = 101;
-    private static final int PROPERTY_url = 102;
-    private static final int PROPERTY_valid = 103;
-    private static final int PROPERTY_validateRoot = 104;
-    private static final int PROPERTY_verifyInputWhenFocusTarget = 105;
-    private static final int PROPERTY_verticalAlignment = 106;
-    private static final int PROPERTY_verticalTextPosition = 107;
-    private static final int PROPERTY_vetoableChangeListeners = 108;
-    private static final int PROPERTY_visible = 109;
-    private static final int PROPERTY_visibleRect = 110;
-    private static final int PROPERTY_width = 111;
-    private static final int PROPERTY_x = 112;
-    private static final int PROPERTY_y = 113;
+    private static final int PROPERTY_preferredSize = 84;
+    private static final int PROPERTY_preferredSizeSet = 85;
+    private static final int PROPERTY_propertyChangeListeners = 86;
+    private static final int PROPERTY_registeredKeyStrokes = 87;
+    private static final int PROPERTY_replaceText = 88;
+    private static final int PROPERTY_requestFocusEnabled = 89;
+    private static final int PROPERTY_rootPane = 90;
+    private static final int PROPERTY_showing = 91;
+    private static final int PROPERTY_size = 92;
+    private static final int PROPERTY_text = 93;
+    private static final int PROPERTY_toolkit = 94;
+    private static final int PROPERTY_toolTipText = 95;
+    private static final int PROPERTY_topLevelAncestor = 96;
+    private static final int PROPERTY_transferHandler = 97;
+    private static final int PROPERTY_treeLock = 98;
+    private static final int PROPERTY_UI = 99;
+    private static final int PROPERTY_UIClassID = 100;
+    private static final int PROPERTY_url = 101;
+    private static final int PROPERTY_valid = 102;
+    private static final int PROPERTY_validateRoot = 103;
+    private static final int PROPERTY_verifyInputWhenFocusTarget = 104;
+    private static final int PROPERTY_verticalAlignment = 105;
+    private static final int PROPERTY_verticalTextPosition = 106;
+    private static final int PROPERTY_vetoableChangeListeners = 107;
+    private static final int PROPERTY_visible = 108;
+    private static final int PROPERTY_visibleRect = 109;
+    private static final int PROPERTY_width = 110;
+    private static final int PROPERTY_x = 111;
+    private static final int PROPERTY_y = 112;
 
     // Property array 
     /*lazy PropertyDescriptor*/
     private static PropertyDescriptor[] getPdescriptor(){
-        PropertyDescriptor[] properties = new PropertyDescriptor[114];
+        PropertyDescriptor[] properties = new PropertyDescriptor[113];
     
         try {
             properties[PROPERTY_accessibleContext] = new PropertyDescriptor ( "accessibleContext", javax.swing.JHyperlink.class, "getAccessibleContext", null ); // NOI18N
@@ -248,7 +247,6 @@ public class JHyperlinkBeanInfo extends SimpleBeanInfo {
             properties[PROPERTY_paintingForPrint] = new PropertyDescriptor ( "paintingForPrint", javax.swing.JHyperlink.class, "isPaintingForPrint", null ); // NOI18N
             properties[PROPERTY_paintingTile] = new PropertyDescriptor ( "paintingTile", javax.swing.JHyperlink.class, "isPaintingTile", null ); // NOI18N
             properties[PROPERTY_parent] = new PropertyDescriptor ( "parent", javax.swing.JHyperlink.class, "getParent", null ); // NOI18N
-            properties[PROPERTY_peer] = new PropertyDescriptor ( "peer", javax.swing.JHyperlink.class, "getPeer", null ); // NOI18N
             properties[PROPERTY_preferredSize] = new PropertyDescriptor ( "preferredSize", javax.swing.JHyperlink.class, "getPreferredSize", "setPreferredSize" ); // NOI18N
             properties[PROPERTY_preferredSizeSet] = new PropertyDescriptor ( "preferredSizeSet", javax.swing.JHyperlink.class, "isPreferredSizeSet", null ); // NOI18N
             properties[PROPERTY_propertyChangeListeners] = new PropertyDescriptor ( "propertyChangeListeners", javax.swing.JHyperlink.class, "getPropertyChangeListeners", null ); // NOI18N
@@ -784,10 +782,10 @@ public class JHyperlinkBeanInfo extends SimpleBeanInfo {
     private static java.awt.Image iconColor32 = null;
     private static java.awt.Image iconMono16 = null;
     private static java.awt.Image iconMono32 = null;//GEN-END:IconsDef
-    private static String iconNameC16 = "/javax/swing/c16.png";//GEN-BEGIN:Icons
-    private static String iconNameC32 = "/javax/swing/c32.png";
-    private static String iconNameM16 = "/javax/swing/m16.png";
-    private static String iconNameM32 = "/javax/swing/m32.png";//GEN-END:Icons
+    private static String iconNameC16 = "/javax/swing/JHyperlink_c16.png";//GEN-BEGIN:Icons
+    private static String iconNameC32 = "/javax/swing/JHyperlink_c32.png";
+    private static String iconNameM16 = "/javax/swing/JHyperlink_m16.png";
+    private static String iconNameM32 = "/javax/swing/JHyperlink_m32.png";//GEN-END:Icons
 
     private static final int defaultPropertyIndex = -1;//GEN-BEGIN:Idx
     private static final int defaultEventIndex = -1;//GEN-END:Idx

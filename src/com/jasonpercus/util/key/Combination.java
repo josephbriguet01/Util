@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, June 2021
+ * Written by JasonPercus, 06/2021
  */
 package com.jasonpercus.util.key;
 
@@ -32,6 +32,7 @@ public class Combination implements java.io.Serializable, Cloneable, Comparable<
      * Correspond au robot qui va réaliser virtuellement une combinaison de touche(s)
      */
     private transient static java.awt.Robot executor;
+    
     
     
 //ATTRIBUTS
@@ -70,7 +71,7 @@ public class Combination implements java.io.Serializable, Cloneable, Comparable<
 //CONSTRUCTORS
     /**
      * Crée une combinaison de touche(s) par défaut. À savoir, aucune touche
-     * @deprecated Ne pas utiliser. À son utilité dans le cas de la sérialisation seulement
+     * @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser - Il n'a de l'intérêt que pour la dé/sérialization</div>
      */
     public Combination() {
     }
@@ -86,11 +87,11 @@ public class Combination implements java.io.Serializable, Cloneable, Comparable<
      */
     public Combination(int key, boolean windows, boolean meta, boolean control, boolean shift, boolean alt) {
         this.windows = windows;
-        this.meta = meta;
+        this.meta    = meta;
         this.control = control;
-        this.shift = shift;
-        this.alt = alt;
-        this.key = key;
+        this.shift   = shift;
+        this.alt     = alt;
+        this.key     = key;
     }
 
     

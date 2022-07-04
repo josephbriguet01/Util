@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by Briguet, Juin 2020
+ * Written by Briguet, 06/2020
  */
 package com.jasonpercus.encryption.exception;
 

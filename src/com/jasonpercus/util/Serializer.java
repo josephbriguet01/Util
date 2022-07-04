@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, September 2018
+ * Written by JasonPercus, 09/2018
  */
 package com.jasonpercus.util;
 

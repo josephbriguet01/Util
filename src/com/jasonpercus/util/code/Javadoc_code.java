@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, June 2021
+ * Written by JasonPercus, 06/2021
  */
 package com.jasonpercus.util.code;
 
@@ -210,7 +210,7 @@ public class Javadoc_code extends Code {
     /**
      * Renvoie la signature du bloc javadoc
      * @return Retourne la signature du bloc javadoc
-     * @deprecated @deprecated <div style="color: #D45B5B; font-style: italic">Utiliser la méthode {@link #toString()}</div>
+     * @deprecated <div style="color: #D45B5B; font-style: italic">Utiliser la méthode {@link #toString()}</div>
      */
     @Override
     public String getSignature() {

@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, June 2021
+ * Written by JasonPercus, 06/2021
  */
 package com.jasonpercus.util.layout;
 
@@ -185,7 +185,7 @@ public class AnchorLayout implements java.awt.LayoutManager2, java.io.Serializab
      * Ajoute un composant au layout selon une ancre
      * @param name Correspond au nom de l'ancre
      * @param comp Correspond au composant à ajouter au layout
-     * @deprecated Remplacé par {@link #addLayoutComponent(java.awt.Component, java.lang.Object)}
+     * @deprecated <div style="color: #D45B5B; font-style: italic">Remplacé par {@link #addLayoutComponent(java.awt.Component, java.lang.Object)}</div>
      */
     @Override
     public void addLayoutComponent(String name, java.awt.Component comp) {

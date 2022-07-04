@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by Briguet, August 2020
+ * Written by Briguet, 08/2020
  */
 package com.jasonpercus.encryption.jps;
 

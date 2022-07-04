@@ -4,15 +4,15 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, July 2018
+ * Written by JasonPercus, 06/2018
  */
 package com.jasonpercus.network;
+
+
 
 import com.jasonpercus.network.ping.Ping;
 import com.jasonpercus.network.ping.ResultPing;
 import com.jasonpercus.network.ping.SuccessPing;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 

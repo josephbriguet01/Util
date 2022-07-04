@@ -4,12 +4,14 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, May 2021
+ * Written by JasonPercus, 05/2021
  */
 package com.jasonpercus.util.process;
 
 
 
+import com.jasonpercus.util.InputStreamListener;
+import com.jasonpercus.util.InputStream;
 import static com.jasonpercus.util.OS.IS_ANDROID;
 import static com.jasonpercus.util.OS.IS_LINUX;
 import static com.jasonpercus.util.OS.IS_WINDOWS;

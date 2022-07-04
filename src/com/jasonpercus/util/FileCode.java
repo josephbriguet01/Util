@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, June 2021
+ * Written by JasonPercus, 06/2021
  */
 package com.jasonpercus.util;
 
@@ -78,7 +78,7 @@ public class FileCode extends File {
 //CONSTRUCTORS
     /**
      * Crée un FileCode par défaut
-     * @deprecated @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser - Il n'a de l'intérêt que pour la dé/sérialization</div>
+     * @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser - Il n'a de l'intérêt que pour la dé/sérialization</div>
      */
     public FileCode() {
         super("");

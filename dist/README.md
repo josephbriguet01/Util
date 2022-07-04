@@ -727,6 +727,63 @@ System.out.println(scanner.getFreePortTCP());
 System.out.println(scanner.getFreePortUDP());
 ```
 
+##### Ping
+La classe `Ping.java` permet de créer des pings vers des équipements ou des urls.
+
+###### Exemples:
+Créons un Ping infini vers une destination présente sur le réseau
+```java
+Ping ping = new Ping("192.168.1.1");
+ping.addPingListener(new PingListener() {
+    @Override
+    public void newPingResult(String hostOrIp, ResultPing result) {
+        System.out.println(hostOrIp+" - "+result);
+    }
+});
+ping.execute();
+```
+Ce qui nous donne comme résultat:
+```
+192.168.1.1 - SuccessPing{from=192.168.1.1, bytes=32, time=1, ttl=64}
+192.168.1.1 - SuccessPing{from=192.168.1.1, bytes=32, time=1, ttl=64}
+192.168.1.1 - SuccessPing{from=192.168.1.1, bytes=32, time=2, ttl=64}
+192.168.1.1 - SuccessPing{from=192.168.1.1, bytes=32, time=6, ttl=64}
+...
+```
+> Comme on le constate on reçoit un objet ```SuccessPing```. En réalité il s'agit bien d'un ```ResultPing```. Car il y a héritage.
+
+Créons un Ping fini (disons 4 pings) vers une destination non présente sur le réseau
+```java
+Ping ping = new Ping("192.168.1.200", 4);
+ping.addPingListener(new PingListener() {
+    @Override
+    public void newPingResult(String hostOrIp, ResultPing result) {
+        System.out.println(hostOrIp+" - "+result);
+    }
+});
+ping.execute();
+```
+Ce qui nous donne comme résultat:
+```
+192.168.1.200 - FailedPing{from=192.168.1.200}
+192.168.1.200 - FailedPing{from=192.168.1.200}
+192.168.1.200 - FailedPing{from=192.168.1.200}
+192.168.1.200 - FailedPing{from=192.168.1.200}
+```
+> Comme on le constate on reçoit un objet ```FailedPing```. En réalité il s'agit bien d'un ```ResultPing```. Car il y a héritage.
+
+Il est possible d'envoyer un seul ping avec une méthode static. Ce qui peut être assez pratique.
+```java
+ResultPing result = Ping.execute(new IPv4("192.168.1.1"));
+System.out.println(result);
+```
+Ce qui nous donne comme résultat:
+```
+SuccessPing{from=192.168.1.1, bytes=32, time=1, ttl=64}
+```
+Lorsqu'un ping est en cours, il est possible de le killer de force avec la méthode ```kill()```.
+Il est également possible de savoir si un ping est en cours avec la méthode ```isRunning()```.
+
 # 6. **ExpandableArray**
 Les classes ExpandableArray représentent des tableaux qui peuvent s'étendre ce qui n'est pas le cas d'un tableau classique. Pourquoi utiliser un ExpandableArray lorsqu'il existe la classe ```java.util.List``` ? Pour répondre à cette question, voici un tableau de comparaison entre un tableau d'entier ```int[]```, une liste d'entier ```java.util.List<Integer>``` et un ExpandableArray d'entier ```com.jasonpercus.util.array.ExpandableArray_int``` lorsqu'il y a énormément d'éléments dans chacun d'eux:
 
@@ -1653,10 +1710,136 @@ System.out.println(infos);
 
 > Pour plus d'information, veuillez consulter la javadoc de cette classe
 
-# 23. **Utilisation de la librairie**
+# 23. **FlatLaf**
+FlatLaf est un look and feel qui est personnalisable. Ce qui fait qu'il est très utilisé. C'est pourquoi dans le projet Util, il existe une classe ```com.jasonpercus.flatlaf.FlatLaf``` qui fait le lien avec la librairie ```flatlaf-2.2```. Il existe une bonne dizaine de thèmes présents dans la librairie ```Util```.
+
+Pour obtenir leur nom:
+```java
+String[] names = FlatLaf.listLookAndFeel();
+```
+
+Pour en charger un à partir de son nom:
+```java
+FlatLaf.loadPersonnalized("Cobalt_2");
+```
+
+On peut charger un des quatres Look And Feel de FlatLaf:
+```java
+FlatLaf.loadFlatLight();
+FlatLaf.loadFlatDark();
+FlatLaf.loadFlatIntelliJ();
+FlatLaf.loadFlatDarcula();
+```
+
+Il est également possible lors d'un changement de theme ou de Look And Feel dans l'application de créer une animation (fondue) entre les deux thèmes et/ou Look And Feel.
+```java
+// Imaginons que de base nous avons chargé ce Look And Feel
+FlatLaf.loadFlatDark();
+
+// Nous pouvons basculer sur le thème "Cobalt_2" avec une petite animation
+FlatLaf.loadPersonnalized("Cobalt_2", true);
+```
+
+On peut également modifier la couleur d'accentuation des ```JComponent``` d'un Look And Feel (mais pas d'un thème).
+```java
+// Imaginons que de base nous avons chargé ce Look And Feel
+FlatLaf.loadFlatLight();
+
+// On modifie la couleur d'accentuation
+FlatLaf.setAccentColor(Color.blue);
+```
+
+On peut modifier également d'autre propriété que la couleur d'accentuation avec la méthode ```setProperty(String key, Object value)```.
+Pour connaître la liste des propriétés modifiables, il peut être utile d'exécuter l'inspecteur:
+```java
+FlatLaf.showInspector();
+```
+
+### Autres méthodes utiles
+Pour afficher ou cacher l'icône d'une ```JFrame```.
+```java
+JFrame maFenetre = ...;
+
+// Affiche l'icône
+FlatLaf.showTitleBarIcon(maFenetre, true);
+
+// Cache l'icône
+FlatLaf.showTitleBarIcon(maFenetre, false);
+```
+
+Pour utiliser les décorations natives de windows
+```java
+// Utilise les décorations natives de windows
+FlatLaf.setUseNativeWindowDecorations(true);
+
+// N'utilise pas les décorations natives de windows
+FlatLaf.setUseNativeWindowDecorations(false);
+```
+
+Dans le cas d'une non utilisation des décorations natives de windows, il est possible d'imbriquer la barre de menu dans les décorations de la fenêtre.
+```java
+// Pour pouvoir exécuter ce qui suit, on doit impérativement désactiver les décorations natives
+FlatLaf.setUseNativeWindowDecorations(false);
+
+// Imbrique la barre de menu dans les décorations de la fenêtre
+FlatLaf.setMenuBarEmbedded(true);
+
+// N'imbrique pas la barre de menu dans les décorations de la fenêtre
+FlatLaf.setMenuBarEmbedded(false);
+```
+
+Il est possible de faire en sorte que la barre de menu se fonde avec le content pane de la fenêtre. Autrement dit qu'il n'y ait pas de séparations visibles entre la barre de menu et le content pane:
+```java
+// Rend invisible la séparation
+FlatLaf.setUnifiedTitleBar(true);
+
+// Rend visible la séparation
+FlatLaf.setUnifiedTitleBar(false);
+```
+
+# 24. **com.jasonpercus.util.desktop.Screen**
+Il est possible d'obtenir la liste des écrans connectés, leurs tailles et leurs positions les uns par rapport aux autres.
+```java
+// Renvoie la liste des écrans connectés
+Screen[] screens = Screen.getScreens();
+
+// Parcourt la liste des écrans
+for(Screen screen : screens){
+    
+    // Détermine s'il s'agit de l'écran principal
+    boolean isPrimary = screen.isPrimary();
+    
+    // Renvoie la taille et la position d'un Desktop sur cet écran. 
+    // C'est à dire en tenant compte de la barre des tâches...
+    Desktop desktop = screen.getDesktop();
+    
+    // ...
+}
+```
+
+# 25. **com.jasonpercus.util.desktop.Desktop**
+Il est possible d'obtenir la liste des bureaux des écrans connectés, leurs tailles et leurs positions les uns par rapport aux autres.
+```java
+// Renvoie la liste des bureaux des écrans connectés
+Desktop[] desktops = Desktop.getDesktops();
+
+// Parcourt la liste des bureaux
+for(Desktop desktop : desktops){
+    
+    // Détermine s'il s'agit du bureau principal
+    boolean isPrimary = desktop.isPrimary();
+    
+    // Renvoie la taille et la position de l'écran qui possède ce bureau
+    Screen screen = desktop.getScreen();
+    
+    // ...
+}
+```
+
+# 26. **Utilisation de la librairie**
 La librairie ```Util-*.*.jar``` fait référence à plusieurs autres projets (cf: Introduction). Ces sous projets sont contenus dans le fichier. En revanche le fichier ```Util-*.*-without-dependencies.jar``` ne les contient pas. Pensez donc à les ajouter dans le classpath si vous utilisez cette version.
 
-# 24. **Licence**
+# 27. **Licence**
 Le projet est sous licence "GNU General Public License v3.0"
 
 ## Accès au projet GitHub => [ici](https://github.com/josephbriguet01/Util "Accès au projet Git Util")

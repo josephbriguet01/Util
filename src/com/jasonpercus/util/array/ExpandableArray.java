@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, May 2021
+ * Written by JasonPercus, 05/2021
  */
 package com.jasonpercus.util.array;
 
@@ -40,7 +40,7 @@ public class ExpandableArray<E> extends Array implements Iterable<E> {
 //CONSTRUCTORS
     /**
      * Crée un tableau extensible d'objets
-     * @deprecated @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser ! Ce constructeur sert uniquement pour la dé/sérialisation. Utiliser {@link #ExpandableArray(java.lang.Class)}</div>
+     * @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser ! Ce constructeur sert uniquement pour la dé/sérialisation. Utiliser {@link #ExpandableArray(java.lang.Class)}</div>
      */
     public ExpandableArray() {
         this(null);

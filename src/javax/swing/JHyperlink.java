@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, July 2022
+ * Written by JasonPercus, 07/2022
  */
 package javax.swing;
 

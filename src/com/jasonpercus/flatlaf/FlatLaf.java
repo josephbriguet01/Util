@@ -1,10 +1,10 @@
 /*
- * Copyright (C) JasonPercus Systems, Inc - All Rights Reserved
+ * Copyright (C) BRIGUET Systems, Inc - All Rights Reserved
  *
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, July 2022
+ * Written by Briguet, 07/2022
  */
 package com.jasonpercus.flatlaf;
 
@@ -23,11 +23,21 @@ import com.formdev.flatlaf.util.Animator;
 
 
 /**
- *
+ * Cette classe permet la gestion de manière plus facile certaines options de la librairie flatlaf
  * @author JasonPercus
  * @version 1.0
  */
 public class FlatLaf {
+
+    
+    
+//CONSTRUCTOR
+    /**
+     * Crée un objet FlatLaf
+     * @deprecated Ne sert à rien
+     */
+    @Deprecated
+    private FlatLaf() {}
     
     
     
@@ -42,7 +52,7 @@ public class FlatLaf {
     }
     
     /**
-     * Modifie si oui ou non on souhaite utiliser les décorations native de windows
+     * Modifie si oui ou non on souhaite utiliser les décorations natives de windows
      * @param useDecorations True si on le souhaite, sinon false
      */
     public static void setUseNativeWindowDecorations(boolean useDecorations){
@@ -52,7 +62,7 @@ public class FlatLaf {
     }
     
     /**
-     * Modifie si oui ou non on souhaite que la menubar soit imbriquée avec la décoration windows. Attention: cela marche seulement si l'on utilise pas les décorations native de windows (cd: {@link #setUseNativeWindowDecorations(boolean)})
+     * Modifie si oui ou non on souhaite que la menubar soit imbriquée avec la décoration windows. Attention: cela marche seulement si l'on utilise pas les décorations natives de windows (cd: {@link #setUseNativeWindowDecorations(boolean)})
      * @param embedded True si on le souhaite, sinon false
      */
     public static void setMenuBarEmbedded(boolean embedded) {
@@ -129,12 +139,26 @@ public class FlatLaf {
     
     /**
      * Charge le Look And Feel FlatLight
+     */
+    public static void loadFlatLight(){
+        loadFlatLight(false);
+    }
+    
+    /**
+     * Charge le Look And Feel FlatLight
      * @param animation Détermine si l'on souhaite avoir une animation au changement du Look And Feel courant (l'ancien), au nouveau Look And Feel (celui-ci)
      */
     public static void loadFlatLight(boolean animation){
         java.awt.EventQueue.invokeLater(() -> {
             changeLaf(new FlatLightLaf(), animation);
         });
+    }
+    
+    /**
+     * Charge le Look And Feel FlatDark
+     */
+    public static void loadFlatDark(){
+        loadFlatDark(false);
     }
     
     /**
@@ -149,6 +173,13 @@ public class FlatLaf {
     
     /**
      * Charge le Look And Feel FlatIntelliJ
+     */
+    public static void loadFlatIntelliJ(){
+        loadFlatIntelliJ(false);
+    }
+    
+    /**
+     * Charge le Look And Feel FlatIntelliJ
      * @param animation Détermine si l'on souhaite avoir une animation au changement du Look And Feel courant (l'ancien), au nouveau Look And Feel (celui-ci)
      */
     public static void loadFlatIntelliJ(boolean animation){
@@ -159,12 +190,28 @@ public class FlatLaf {
     
     /**
      * Charge le Look And Feel FlatDarcula
+     */
+    public static void loadFlatDarcula(){
+        loadFlatDarcula(false);
+    }
+    
+    /**
+     * Charge le Look And Feel FlatDarcula
      * @param animation Détermine si l'on souhaite avoir une animation au changement du Look And Feel courant (l'ancien), au nouveau Look And Feel (celui-ci)
      */
     public static void loadFlatDarcula(boolean animation){
         java.awt.EventQueue.invokeLater(() -> {
             changeLaf(new FlatDarculaLaf(), animation);
         });
+    }
+    
+    /**
+     * Charge un Flat Look And Feel ou Thème personnalisé.
+     * @param name Correspond au nom du Look And Feel ou au nom du thème
+     * @throws java.io.IOException S'il y a une erreur lors du chargement du Look And Feel ou du Thème
+     */
+    public static void loadPersonnalized(String name) throws java.io.IOException {
+        loadPersonnalized(name, false);
     }
     
     /**
@@ -308,6 +355,8 @@ public class FlatLaf {
     
     
 }
+
+
 
 class FlatAnimatedLafChange {
 
@@ -489,4 +538,7 @@ class FlatAnimatedLafChange {
             hideSnapshotWithAnimation(duration);
         });
     }
+    
+    
+    
 }

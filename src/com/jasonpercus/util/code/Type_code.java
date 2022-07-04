@@ -4,7 +4,7 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * Written by JasonPercus, June 2021
+ * Written by JasonPercus, 06/2021
  */
 package com.jasonpercus.util.code;
 
@@ -87,7 +87,7 @@ public abstract class Type_code extends Element_element {
      * @param _static Détermine si le bout de code est static
      * @param _strictfp Détermine si le bout de code est strictfp
      * @param parent Correspond à l'éventuel parent de bout de code
-     * @deprecated @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser</div>
+     * @deprecated <div style="color: #D45B5B; font-style: italic">NE PAS UTILISER</div>
      */
     public Type_code(CodeCreator creator, String name, boolean _public, boolean _protected, boolean _private, boolean _static, boolean _strictfp, Type_code parent) {
         super(creator, name, _public, _protected, _private, _static, parent);
