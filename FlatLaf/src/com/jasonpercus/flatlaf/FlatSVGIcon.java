@@ -1,11 +1,4 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.jasonpercus.flatlaf;
-
-/*
  * Copyright 2019 FormDev Software GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +13,10 @@ package com.jasonpercus.flatlaf;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.jasonpercus.flatlaf;
+
+
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -57,6 +54,8 @@ import com.formdev.flatlaf.util.UIScale;
 import com.kitfox.svg.SVGDiagram;
 import com.kitfox.svg.SVGException;
 import com.kitfox.svg.SVGUniverse;
+
+
 
 /**
  * An icon that loads and paints SVG.

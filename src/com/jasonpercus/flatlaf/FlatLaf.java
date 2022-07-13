@@ -19,6 +19,17 @@ import com.formdev.flatlaf.IntelliJTheme;
 import com.formdev.flatlaf.util.LoggingFacade;
 import com.formdev.flatlaf.FlatSystemProperties;
 import com.formdev.flatlaf.util.Animator;
+import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 
 
 
@@ -101,6 +112,36 @@ public class FlatLaf {
      */
     public static void setAccentColor(java.awt.Color color){
         setProperty("@accentColor", color);
+    }
+    
+    /**
+     * Renvoie une propriété du look and feel. Il peut être utile de s'aider de l'inspecteur pour déterminer quelle propriété renvoyer
+     * @param key Correspond à la clef de la propriété à renvoyer
+     * @return Retourne la valeur de la propriété ou null
+     */
+    public static Object getProperty(String key){
+        if(key == null || key.isEmpty())
+            return null;
+        
+        UIDefaults defaults = UIManager.getDefaults();
+        Set<Map.Entry<Object, Object>> defaultsSet = defaults.entrySet();
+        for (Map.Entry<Object, Object> e : defaultsSet) {
+            Object k = e.getKey();
+
+            if (!(k instanceof String) || !k.equals(key))
+                continue;
+            
+            Object value = defaults.get(k);
+            
+            if(value instanceof javax.swing.plaf.ColorUIResource){
+                javax.swing.plaf.ColorUIResource str = (javax.swing.plaf.ColorUIResource) value;
+                return new Color(str.getRed(), str.getGreen(), str.getBlue(), str.getAlpha());
+            }
+            
+            return value;
+        }
+        
+        return null;
     }
     
     /**
@@ -252,24 +293,21 @@ public class FlatLaf {
     public static String[] listLookAndFeel() throws java.io.IOException {
         java.security.CodeSource src = FlatLaf.class.getProtectionDomain().getCodeSource();
         if (src != null) {
-            if(src.getLocation().getFile().endsWith(".jar")){
+            if(src.getLocation().getFile().endsWith(".jar") || src.getLocation().getFile().endsWith(".exe")){
                 java.net.URL jar = src.getLocation();
                 java.util.zip.ZipInputStream zip = new java.util.zip.ZipInputStream(jar.openStream());
                 java.util.List<String> files = new java.util.ArrayList<>();
-                while (true) {
+                while (zip.available() > 0) {
                     java.util.zip.ZipEntry e = zip.getNextEntry();
-                    if (e == null) {
-                        break;
-                    }
-                    String name = e.getName();
-                    if (name.startsWith("themes/") && name.endsWith(".properties") || name.endsWith(".theme.json")) {
-                        files.add(name.substring("themes/".length()).replace(".properties", "").replace(".theme.json", ""));
+                    if (e != null) {
+                        String name = e.getName();
+                        if (name.startsWith("themes/") && name.endsWith(".properties") || name.endsWith(".theme.json"))
+                            files.add(name.substring("themes/".length()).replace(".properties", "").replace(".theme.json", ""));
                     }
                 }
                 String[] results = new String[files.size()];
-                for(int i=0;i<results.length;i++){
+                for(int i=0;i<results.length;i++)
                     results[i] = files.get(i);
-                }
                 return results;
             }else{
                 java.io.File folder = new java.io.File("build/classes/themes");
