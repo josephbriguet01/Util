@@ -87,7 +87,9 @@
         </zip>
         <delete file="${dist.dir}/temp_final.jar"/>
         <move file="${dist.dir}/${application.title}.jar" tofile="${dist.dir}/${application.title}-${version.code}-without-dependencies.jar"/>
-        <copy todir="${dist.dir}">
+        <delete dir="${dist.dir}/dependencies"/>
+        <mkdir dir="${dist.dir}/dependencies"/>
+        <copy todir="${dist.dir}/dependencies">
             <fileset dir="lib">
                 <include name="*.jar"/>
             </fileset>
