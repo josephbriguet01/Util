@@ -80,6 +80,7 @@ public class FileCode extends File {
      * Crée un FileCode par défaut
      * @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser - Il n'a de l'intérêt que pour la dé/sérialization</div>
      */
+    @Deprecated
     public FileCode() {
         super("");
     }

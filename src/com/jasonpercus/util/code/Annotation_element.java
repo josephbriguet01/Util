@@ -47,6 +47,7 @@ public class Annotation_element extends Code {
      * @param parent Correspond au code parent de celui-ci
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Annotation_element(CodeCreator creator, AnnotationExpr ae, Code parent) {
         super(creator, ae.getNameAsString(), parent);
         String v = ae.toString()

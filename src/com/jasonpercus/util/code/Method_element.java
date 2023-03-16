@@ -105,6 +105,7 @@ public class Method_element extends Element_element {
      * @param parent Correspond à la [classe | interface | énumération | annotation] parente de cette méthode
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Method_element(CodeCreator creator, MethodDeclaration md, Type_code parent) {
         super(null, md.getNameAsString(), md.isPublic(), md.isProtected(), md.isPrivate(), md.isStatic(), parent);
         this._final              = md.isFinal();

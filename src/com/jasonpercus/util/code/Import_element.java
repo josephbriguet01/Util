@@ -59,6 +59,7 @@ public class Import_element extends Code implements Comparable<Code> {
      * @param parent Correspond au code parent de celui-ci
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Import_element(CodeCreator creator, String name, boolean _static, boolean all, Code parent) {
         super(creator, name, parent);
         this._static = _static;

@@ -42,6 +42,7 @@ public class ExpandableArray<E> extends Array implements Iterable<E> {
      * Crée un tableau extensible d'objets
      * @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser ! Ce constructeur sert uniquement pour la dé/sérialisation. Utiliser {@link #ExpandableArray(java.lang.Class)}</div>
      */
+    @Deprecated
     public ExpandableArray() {
         this(null);
     }

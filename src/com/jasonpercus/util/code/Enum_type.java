@@ -64,6 +64,7 @@ public class Enum_type extends Type_code {
      * @param ed Correspond au bloc représentant la classe d'énumération de JavaParser
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Enum_type(CodeCreator creator, Type_code parent, EnumDeclaration ed) {
         super(creator, ed.getNameAsString(), ed.isPublic(), ed.isProtected(), ed.isPrivate(), ed.isStatic(), ed.isStrictfp(), parent);
         NodeList<ClassOrInterfaceType> _implementsB = ed.getImplementedTypes();

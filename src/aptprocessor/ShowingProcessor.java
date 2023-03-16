@@ -50,7 +50,7 @@ import com.jasonpercus.util.code.Throws_javadoc;
  * @version 1.0
  */
 @javax.annotation.processing.SupportedAnnotationTypes(value = {"com.jasonpercus.util.Showing"})
-@javax.annotation.processing.SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_8)
+@javax.annotation.processing.SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_17)
 public class ShowingProcessor extends SimplifiedAbstractProcessor {
 
     

@@ -244,6 +244,7 @@ public final class Code {
      * Crée un code par défaut
      * @deprecated Non utilisable
      */
+    @Deprecated
     private Code() {
         this.code = -1;
         this.name = null;

@@ -70,6 +70,7 @@ public class Field_element extends Element_element {
      * @param parent Correspond à la [classe | interface | énumération] parente de cet attribut
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Field_element(CodeCreator creator, FieldDeclaration fd, VariableDeclarator vd, Type_code parent) {
         super(null, vd.getNameAsString(), fd.isPublic(), fd.isProtected(), fd.isPrivate(), fd.isStatic(), parent);
         this._final     = fd.isFinal();

@@ -61,6 +61,7 @@ public class EnumConst_element extends Code {
      * @param parent Correspond au code parent de celui-ci
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected EnumConst_element(CodeCreator creator, EnumConstantDeclaration ecd, Code parent) {
         super(null, ecd.getNameAsString(), parent);
         this.annotations = new java.util.ArrayList<>();

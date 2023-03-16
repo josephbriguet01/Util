@@ -53,6 +53,7 @@ public final class CombinationCapture {
      * Crée un captureur de combinaison de touche(s)
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     private CombinationCapture() {
         this(null, null);
     }

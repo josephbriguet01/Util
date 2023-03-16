@@ -73,6 +73,7 @@ public class Combination implements java.io.Serializable, Cloneable, Comparable<
      * Crée une combinaison de touche(s) par défaut. À savoir, aucune touche
      * @deprecated <div style="color: #D45B5B; font-style: italic">Ne pas utiliser - Il n'a de l'intérêt que pour la dé/sérialization</div>
      */
+    @Deprecated
     public Combination() {
     }
     

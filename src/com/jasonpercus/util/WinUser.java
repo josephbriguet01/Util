@@ -38,6 +38,7 @@ public class WinUser {
      * Constructeur par défaut
      * @deprecated NE PAS UTILISER
      */
+    @Deprecated
     private WinUser(){
         
     }
@@ -617,6 +618,7 @@ public class WinUser {
          * Crée une fenêtre Windows
          * @deprecated Aucun intérêt
          */
+        @Deprecated
         private Window(){
             this(null, null);
         }
@@ -627,6 +629,7 @@ public class WinUser {
          * @param name Correspond au nom de la fenêtre Windows
          * @deprecated Ne pas utiliser
          */
+        @Deprecated
         private Window(HWND windowsPointer, String name) {
             this.windowsPointer = windowsPointer;
             this.name = name;

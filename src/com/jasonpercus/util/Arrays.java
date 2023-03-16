@@ -25,6 +25,7 @@ public class Arrays {
      * Constructeur par défaut
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     private Arrays() {
     }
     

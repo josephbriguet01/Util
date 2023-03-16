@@ -89,6 +89,7 @@ public abstract class Type_code extends Element_element {
      * @param parent Correspond à l'éventuel parent de bout de code
      * @deprecated <div style="color: #D45B5B; font-style: italic">NE PAS UTILISER</div>
      */
+    @Deprecated
     public Type_code(CodeCreator creator, String name, boolean _public, boolean _protected, boolean _private, boolean _static, boolean _strictfp, Type_code parent) {
         super(creator, name, _public, _protected, _private, _static, parent);
         this._strictfp      = _strictfp;

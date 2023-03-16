@@ -131,7 +131,15 @@ public class ArrayQueueDetector<O> extends ArrayQueue<O> {
      */
     public interface IDetector<O> {
         
+        
+        
+        /**
+         * Lorsqu'une séquence précise a été détectée
+         * @param sequence Correspond à la séquence détéctée
+         */
         public void sequenceDetected(O[] sequence);
+        
+        
         
     }
     

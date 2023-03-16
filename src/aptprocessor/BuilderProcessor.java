@@ -23,7 +23,7 @@ import java.io.File;
  * @version 1.0
  */
 @javax.annotation.processing.SupportedAnnotationTypes(value = {"com.jasonpercus.util.Builder"})
-@javax.annotation.processing.SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_8)
+@javax.annotation.processing.SupportedSourceVersion(javax.lang.model.SourceVersion.RELEASE_17)
 public class BuilderProcessor extends javax.annotation.processing.AbstractProcessor {
 
     
@@ -253,19 +253,11 @@ public class BuilderProcessor extends javax.annotation.processing.AbstractProces
     private String generateFile(javax.lang.model.element.Element classe, java.util.List<String> methods){
         java.util.Date date = new java.util.Date();
         String file = "package "+classe.getEnclosingElement()+";\n\n\n\n";
-        if(!ANDROID_PROJECT){
-            file += "@javax.annotation.Generated(\n";
-            file += "    value    = \"com.jasonpercus.util.Builder\",\n";
-            file += "    comments = \"Correspond au builder de la classe "+classe+"\",\n";
-            file += "    date     = \""+new java.text.SimpleDateFormat("dd MMMM yyyy").format(date)+"\"\n";
-            file += ")\n";
-        }else{
-            file += "/*Generated(\n";
-            file += "    value    = \"com.jasonpercus.util.Builder\",\n";
-            file += "    comments = \"Correspond au builder de la classe "+classe+"\",\n";
-            file += "    date     = \""+new java.text.SimpleDateFormat("dd MMMM yyyy").format(date)+"\"\n";
-            file += ")*/\n";
-        }
+        file += "/*Generated(\n";
+        file += "    value    = \"com.jasonpercus.util.Builder\",\n";
+        file += "    comments = \"Correspond au builder de la classe "+classe+"\",\n";
+        file += "    date     = \""+new java.text.SimpleDateFormat("dd MMMM yyyy").format(date)+"\"\n";
+        file += ")*/\n";
         file += "public class "+classe.getSimpleName()+"Builder {\n\n";
         file += "    private final "+classe.getSimpleName()+" obj = new "+classe.getSimpleName()+"();\n\n";
         file += "    public "+classe.getSimpleName()+" build() {\n";

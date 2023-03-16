@@ -215,6 +215,7 @@ public class OS {
      * Constructeur par défaut
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     private OS() {
     }
     

@@ -24,6 +24,7 @@ public class Serializer {
      * Crée un objet Serializer par défaut
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     private Serializer(){ }
     // </editor-fold>
     

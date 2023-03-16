@@ -103,6 +103,7 @@ public abstract class ElementTyped_javadoc extends Element_javadoc {
      * @deprecated <div style="color: #D45B5B; font-style: italic">Utiliser la méthode {@link #toString()}</div>
      */
     @Override
+    @Deprecated
     public String getSignature() {
         String _name_        = getName() != null ? getName() : "";
         String _key_         = key != null ? key : "";

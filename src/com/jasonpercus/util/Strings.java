@@ -25,6 +25,7 @@ public class Strings {
      * Constructeur par défaut
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     private Strings() {
     }
     

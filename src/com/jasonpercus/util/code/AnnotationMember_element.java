@@ -63,6 +63,7 @@ public class AnnotationMember_element extends Element_element {
      * @param parent Correspond à l'interface d'annotation parent de ce membre
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected AnnotationMember_element(CodeCreator creator, AnnotationMemberDeclaration amd, Type_code parent) {
         super(null, amd.getName().toString(), amd.isPublic(), false, false, false, parent);
         this._abstract  = amd.isAbstract();

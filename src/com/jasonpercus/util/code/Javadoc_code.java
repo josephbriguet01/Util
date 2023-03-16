@@ -50,6 +50,7 @@ public class Javadoc_code extends Code {
      * @param parent Correspond au code parent de celui-ci
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Javadoc_code(CodeCreator creator, JavadocComment jc, Code parent) {
         super(creator, "", parent);
         this.elements = new java.util.ArrayList<>();
@@ -213,6 +214,7 @@ public class Javadoc_code extends Code {
      * @deprecated <div style="color: #D45B5B; font-style: italic">Utiliser la méthode {@link #toString()}</div>
      */
     @Override
+    @Deprecated
     public String getSignature() {
         StringBuilder chain = new StringBuilder("/**\n");
         

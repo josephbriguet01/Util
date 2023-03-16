@@ -57,6 +57,7 @@ public class Parameter_element extends Element_element {
      * @param parent Correspond au constructeur ou méthode parent de ce paramètre
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Parameter_element(CodeCreator creator, Parameter p, Element_element parent) {
         super(creator, p.getNameAsString(), false, false, false, false, parent);
         this._final     = p.isFinal();

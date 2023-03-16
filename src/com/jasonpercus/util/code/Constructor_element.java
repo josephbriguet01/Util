@@ -85,6 +85,7 @@ public class Constructor_element extends Element_element {
      * @param parent Correspond à la [classe | énumération] parente de ce constructeur
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Constructor_element(CodeCreator creator, ConstructorDeclaration cd, Type_code parent) {
         super(null, cd.getNameAsString(), cd.isPublic(), cd.isProtected(), cd.isPrivate(), cd.isStatic(), parent);
         this._final              = cd.isFinal();

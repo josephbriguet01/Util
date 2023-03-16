@@ -61,6 +61,7 @@ public class Annotation_type extends Type_code {
      * @param ad Correspond au bloc représentant l'interface d'annotation de JavaParser
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Annotation_type(CodeCreator creator, Type_code parent, AnnotationDeclaration ad) {
         super(creator, ad.getNameAsString(), ad.isPublic(), ad.isProtected(), ad.isPrivate(), ad.isStatic(), ad.isStrictfp(), parent);
         this._abstract        = ad.isAbstract();

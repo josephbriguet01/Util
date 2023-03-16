@@ -80,6 +80,7 @@ public class Interface_type extends Type_code {
      * @param coid Correspond au bloc représentant l'interface de JavaParser
      * @deprecated Ne pas utiliser
      */
+    @Deprecated
     protected Interface_type(CodeCreator creator, Type_code parent, ClassOrInterfaceDeclaration coid) {
         super(creator, coid.getNameAsString(), coid.isPublic(), coid.isProtected(), coid.isPrivate(), coid.isStatic(), coid.isStrictfp(), parent);
         NodeList<ClassOrInterfaceType> _extendsB    = coid.getExtendedTypes();

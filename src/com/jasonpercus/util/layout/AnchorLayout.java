@@ -188,6 +188,7 @@ public class AnchorLayout implements java.awt.LayoutManager2, java.io.Serializab
      * @deprecated <div style="color: #D45B5B; font-style: italic">Remplacé par {@link #addLayoutComponent(java.awt.Component, java.lang.Object)}</div>
      */
     @Override
+    @Deprecated
     public void addLayoutComponent(String name, java.awt.Component comp) {
         synchronized (comp.getTreeLock()) {
             if (name == null)
