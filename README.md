@@ -7,6 +7,7 @@ Cette librairie apporte une multitude de fonctions utiles permettant tout et n�
 - javaparser-core-3.22.1
 - jna-5.6.0
 - jna-platform-5.6.0
+- jnativehook-2.2.2
 
 D’ailleurs les projets ci-dessus sont notamment très utilisés par les diverses classes du projet Util.
 
