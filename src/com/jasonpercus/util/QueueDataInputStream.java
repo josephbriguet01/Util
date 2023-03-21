@@ -8,6 +8,8 @@
  */
 package com.jasonpercus.util;
 
+import java.io.IOException;
+
 
 
 /**
@@ -50,6 +52,14 @@ public class QueueDataInputStream extends java.io.InputStream {
     
     
 //METHODES
+    /**
+     * Détermine s'il existe ou pas des données dans le flux (le fait qu'il n'y en a pas ne justefie en aucun cas que le flux est fermée
+     * @return Retourne true s'il n'y a aucune donnée, sinon false
+     */
+    public boolean isEmpty(){
+            return this.queue.isEmpty();
+    }
+
     /**
      * Extrait un byte de la file d'attente. Cette méthode reste bloquante tant qu'il n'y a pas de byte dans la file d'attente
      * @return Retourne un byte de la file d'attente ou -1 si le flux est fermé

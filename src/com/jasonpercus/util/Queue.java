@@ -63,6 +63,14 @@ public class Queue<O> {
         }
     }
     
+    /**
+     * Détermine s'il existe ou pas des données dans la file d'attente
+     * @return Retourne true s'il n'y a aucune donnée, sinon false
+     */
+    public boolean isEmpty(){
+            return this.buffer.isEmpty();
+    }
+    
     
     
 }
